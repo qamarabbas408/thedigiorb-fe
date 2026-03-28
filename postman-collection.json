@@ -95,6 +95,79 @@
           }
         }
       ]
+    },
+    {
+      "name": "Portfolio Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/portfolio/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["portfolio", "categories"]
+            },
+            "description": "Get all portfolio categories"
+          }
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/portfolio/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["portfolio", "categories"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Web Design\",\n    \"icon\": \"bi-globe\"\n}"
+            },
+            "description": "Create a new portfolio category"
+          }
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/portfolio/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["portfolio", "categories"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"web-design\",\n    \"name\": \"Web Design Updated\",\n    \"icon\": \"bi-display\"\n}"
+            },
+            "description": "Update a portfolio category"
+          }
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/portfolio/categories?id=web-design",
+              "host": ["{{baseUrl}}"],
+              "path": ["portfolio", "categories"]
+            },
+            "description": "Delete a portfolio category by ID"
+          }
+        }
+      ]
     }
   ]
 }
