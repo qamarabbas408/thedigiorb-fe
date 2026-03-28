@@ -1,0 +1,14 @@
+mysql -u root < "D:\personal-projects\templates\Orbit\digital-orbits-fe\src\lib\schema.sql"
+mysql -u root orbit_portfolio < src/lib/settings.sql
+mysql -u root orbit_portfolio < src/lib/team.sql
+
+
+For production testing, run:
+npm run build
+npm start
+
+
+// in NEXT
+During development, Next.js updates only the modified module, 
+preserving component state while updating code in the. that why when you use browser back button 
+it wont render previous page again. 

@@ -1,0 +1,5 @@
+-- Testimonials sample data
+INSERT INTO testimonials (id, name, title, company, content, rating, featured, status) VALUES
+('1', 'Sarah K.', 'IT Director', 'RetailCorp', 'We were facing a major challenge integrating our legacy systems with a new e-commerce platform. DigitalOrbit not only provided a seamless solution but also offered valuable insights that improved our overall data management. Their team''s technical expertise is truly impressive.', 5, true, 'published'),
+('2', 'Mark L.', 'CEO', 'SmallBiz Solutions', 'Working with DigitalOrbit was a refreshing experience. They kept us informed throughout the entire project, clearly explaining technical concepts and proactively addressing any concerns. The project was completed on time and within budget.', 5, true, 'published'),
+('3', 'Emily R.', 'Product Manager', 'TechStart Inc.', 'DigitalOrbit brought a fresh perspective to our mobile app development project. They suggested innovative features and design elements that significantly enhanced the user experience. We''ve seen a noticeable increase in user engagement since the launch.', 5, false, 'published');
