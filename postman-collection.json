@@ -377,6 +377,278 @@
           }
         }
       ]
+    },
+    {
+      "name": "Stats",
+      "item": [
+        {
+          "name": "Get All Stats",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["stats"]
+            },
+            "description": "Get all stats. Filters: ?section=home, ?status=published"
+          }
+        },
+        {
+          "name": "Create Stat",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["stats"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"section\": \"home\",\n    \"label\": \"Projects Completed\",\n    \"value\": \"150+\",\n    \"icon\": \"bi-briefcase\",\n    \"displayOrder\": 1,\n    \"status\": \"published\"\n}"
+            },
+            "description": "Create a new stat"
+          }
+        },
+        {
+          "name": "Get Single Stat",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/stats/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["stats", "1"]
+            },
+            "description": "Get a single stat by ID"
+          }
+        },
+        {
+          "name": "Update Stat",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/stats/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["stats", "1"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"section\": \"home\",\n    \"label\": \"Updated Label\",\n    \"value\": \"200+\",\n    \"icon\": \"bi-star\",\n    \"status\": \"published\"\n}"
+            },
+            "description": "Update a stat"
+          }
+        },
+        {
+          "name": "Delete Stat",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/stats/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["stats", "1"]
+            },
+            "description": "Delete a stat"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Team",
+      "item": [
+        {
+          "name": "Get All Team Members",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/team",
+              "host": ["{{baseUrl}}"],
+              "path": ["team"]
+            },
+            "description": "Get all active team members"
+          }
+        },
+        {
+          "name": "Create Team Member",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/team",
+              "host": ["{{baseUrl}}"],
+              "path": ["team"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Doe\",\n    \"role\": \"Lead Developer\",\n    \"bio\": \"Experienced developer...\",\n    \"image\": \"/assets/img/team/member.webp\",\n    \"facebook_url\": \"https://facebook.com/\",\n    \"twitter_url\": \"https://twitter.com/\",\n    \"linkedin_url\": \"https://linkedin.com/\",\n    \"instagram_url\": \"https://instagram.com/\",\n    \"display_order\": 1,\n    \"status\": \"active\"\n}"
+            },
+            "description": "Create a new team member"
+          }
+        },
+        {
+          "name": "Get Single Team Member",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/team/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["team", "1"]
+            },
+            "description": "Get a single team member by ID"
+          }
+        },
+        {
+          "name": "Update Team Member",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/team/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["team", "1"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Doe Updated\",\n    \"role\": \"Senior Developer\",\n    \"bio\": \"Updated bio...\",\n    \"status\": \"active\"\n}"
+            },
+            "description": "Update a team member"
+          }
+        },
+        {
+          "name": "Delete Team Member",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/team/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["team", "1"]
+            },
+            "description": "Delete a team member"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Testimonials",
+      "item": [
+        {
+          "name": "Get All Testimonials",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/testimonials",
+              "host": ["{{baseUrl}}"],
+              "path": ["testimonials"]
+            },
+            "description": "Get all testimonials. Filters: ?featured=true, ?status=published"
+          }
+        },
+        {
+          "name": "Create Testimonial",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/testimonials",
+              "host": ["{{baseUrl}}"],
+              "path": ["testimonials"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Jane Smith\",\n    \"title\": \"CEO\",\n    \"company\": \"Tech Corp\",\n    \"content\": \"Great service! Highly recommended.\",\n    \"rating\": 5,\n    \"image\": \"/assets/img/testimonial.webp\",\n    \"featured\": true,\n    \"status\": \"published\"\n}"
+            },
+            "description": "Create a new testimonial"
+          }
+        },
+        {
+          "name": "Get Single Testimonial",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/testimonials/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["testimonials", "1"]
+            },
+            "description": "Get a single testimonial by ID"
+          }
+        },
+        {
+          "name": "Update Testimonial",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/testimonials/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["testimonials", "1"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Jane Smith\",\n    \"title\": \"CTO\",\n    \"content\": \"Updated testimonial content...\",\n    \"rating\": 4,\n    \"featured\": false,\n    \"status\": \"draft\"\n}"
+            },
+            "description": "Update a testimonial"
+          }
+        },
+        {
+          "name": "Delete Testimonial",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/testimonials/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["testimonials", "1"]
+            },
+            "description": "Delete a testimonial"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Upload",
+      "item": [
+        {
+          "name": "Upload File",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/upload",
+              "host": ["{{baseUrl}}"],
+              "path": ["upload"]
+            },
+            "description": "Upload a file. Body: file (required), folder (optional)"
+          }
+        }
+      ]
     }
   ]
 }
