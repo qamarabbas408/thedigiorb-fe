@@ -253,6 +253,130 @@
           }
         }
       ]
+    },
+    {
+      "name": "Services",
+      "item": [
+        {
+          "name": "Get All Services",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/services",
+              "host": ["{{baseUrl}}"],
+              "path": ["services"]
+            },
+            "description": "Get all services. Filters: ?status=published, ?featured=true"
+          }
+        },
+        {
+          "name": "Create Service",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/services",
+              "host": ["{{baseUrl}}"],
+              "path": ["services"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Web Development\",\n    \"description\": \"Professional web development services...\",\n    \"icon\": \"bi-code-slash\",\n    \"featured\": true,\n    \"displayOrder\": 1,\n    \"status\": \"published\"\n}"
+            },
+            "description": "Create a new service"
+          }
+        },
+        {
+          "name": "Get Single Service",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/services/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["services", "1"]
+            },
+            "description": "Get a single service by ID"
+          }
+        },
+        {
+          "name": "Update Service",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/services/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["services", "1"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Updated Service\",\n    \"description\": \"Updated description...\",\n    \"icon\": \"bi-lightbulb\",\n    \"featured\": false,\n    \"displayOrder\": 2,\n    \"status\": \"draft\"\n}"
+            },
+            "description": "Update a service"
+          }
+        },
+        {
+          "name": "Delete Service",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/services/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["services", "1"]
+            },
+            "description": "Delete a service"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Settings",
+      "item": [
+        {
+          "name": "Get All Settings",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/settings",
+              "host": ["{{baseUrl}}"],
+              "path": ["settings"]
+            },
+            "description": "Get all site settings as key-value pairs"
+          }
+        },
+        {
+          "name": "Update Settings",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/settings",
+              "host": ["{{baseUrl}}"],
+              "path": ["settings"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"site_name\": \"DigitalOrb\",\n    \"site_email\": \"info@example.com\",\n    \"site_description\": \"Your trusted partner for digital solutions\"\n}"
+            },
+            "description": "Update site settings"
+          }
+        }
+      ]
     }
   ]
 }
