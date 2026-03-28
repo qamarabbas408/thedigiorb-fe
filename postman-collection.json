@@ -168,6 +168,91 @@
           }
         }
       ]
+    },
+    {
+      "name": "Portfolio Projects",
+      "item": [
+        {
+          "name": "Get All Projects",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/portfolio/projects",
+              "host": ["{{baseUrl}}"],
+              "path": ["portfolio", "projects"]
+            },
+            "description": "Get all projects. Filters: ?categoryId=web-design, ?status=published"
+          }
+        },
+        {
+          "name": "Create Project",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/portfolio/projects",
+              "host": ["{{baseUrl}}"],
+              "path": ["portfolio", "projects"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"New Project\",\n    \"subtitle\": \"Project Subtitle\",\n    \"categoryId\": \"web-design\",\n    \"year\": \"2024\",\n    \"technologies\": [\"Laravel\", \"React\"],\n    \"description\": \"Project description...\",\n    \"image\": \"/assets/img/portfolio/project.webp\",\n    \"gallery\": [\"/assets/img/gallery-1.webp\"],\n    \"featured\": true,\n    \"client\": \"Client Name\",\n    \"url\": \"https://example.com\",\n    \"status\": \"published\"\n}"
+            },
+            "description": "Create a new portfolio project"
+          }
+        },
+        {
+          "name": "Get Single Project",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/portfolio/projects/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["portfolio", "projects", "1"]
+            },
+            "description": "Get a single project by ID"
+          }
+        },
+        {
+          "name": "Update Project",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/portfolio/projects/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["portfolio", "projects", "1"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Updated Project\",\n    \"subtitle\": \"Updated Subtitle\",\n    \"categoryId\": \"web-design\",\n    \"year\": \"2024\",\n    \"technologies\": [\"Laravel\", \"React\", \"MySQL\"],\n    \"description\": \"Updated description...\",\n    \"featured\": false,\n    \"status\": \"draft\"\n}"
+            },
+            "description": "Update a portfolio project"
+          }
+        },
+        {
+          "name": "Delete Project",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/portfolio/projects/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["portfolio", "projects", "1"]
+            },
+            "description": "Delete a portfolio project"
+          }
+        }
+      ]
     }
   ]
 }
