@@ -1,0 +1,100 @@
+{
+  "info": {
+    "name": "DigitalOrb API",
+    "description": "API collection for DigitalOrb backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000/api/v1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Contacts",
+      "item": [
+        {
+          "name": "Get All Contacts",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/contacts",
+              "host": ["{{baseUrl}}"],
+              "path": ["contacts"]
+            },
+            "description": "Get all contacts. Optional filter: ?status=new"
+          }
+        },
+        {
+          "name": "Create Contact",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/contacts",
+              "host": ["{{baseUrl}}"],
+              "path": ["contacts"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"subject\": \"Inquiry\",\n    \"message\": \"Hello, I have a question...\",\n    \"phone\": \"+1234567890\"\n}"
+            },
+            "description": "Create a new contact"
+          }
+        },
+        {
+          "name": "Get Single Contact",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/contacts/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["contacts", "1"]
+            },
+            "description": "Get a single contact by ID"
+          }
+        },
+        {
+          "name": "Update Contact Status",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/contacts/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["contacts", "1"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"read\"\n}"
+            },
+            "description": "Update contact status"
+          }
+        },
+        {
+          "name": "Delete Contact",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/contacts/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["contacts", "1"]
+            },
+            "description": "Delete a contact"
+          }
+        }
+      ]
+    }
+  ]
+}
