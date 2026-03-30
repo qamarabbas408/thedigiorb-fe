@@ -17,8 +17,14 @@ export const processImageUrls = <T extends Record<string, any>>(
   const result = { ...item };
   
   for (const field of imageFields) {
-    if (result[field] && typeof result[field] === 'string') {
-      result[field] = processImageUrl(result[field]) as any;
+    const value = result[field];
+    
+    if (!value) continue;
+    
+    if (Array.isArray(value)) {
+      result[field] = value.map((img: string) => processImageUrl(img)) as any;
+    } else if (typeof value === 'string') {
+      result[field] = processImageUrl(value) as any;
     }
   }
   
