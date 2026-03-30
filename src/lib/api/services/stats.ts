@@ -7,8 +7,13 @@ export const statsApi = {
     return response.data.data || response.data;
   },
 
-  getBySection: async (section: string): Promise<Stat[]> => {
-    const response = await apiClient.get(`/stats?section=${section}`);
+  getBySection: async (section: string, includeGlobal = true): Promise<Stat[]> => {
+    const response = await apiClient.get(`/stats?section=${section}&include_global=${includeGlobal}`);
+    return response.data.data || response.data;
+  },
+
+  getGlobalStats: async (): Promise<Stat[]> => {
+    const response = await apiClient.get('/global-stats');
     return response.data.data || response.data;
   },
 };

@@ -46,6 +46,8 @@ export interface Stat {
   icon: string;
   display_order: number;
   status: string;
+  is_global?: boolean;
+  global_key?: string;
   created_at?: string;
   updated_at?: string;
 }
