@@ -3,28 +3,9 @@
 import { useState, useEffect, use } from 'react';
 import Link from 'next/link';
 import { useSettings } from '@/context/SettingsContext';
-
-interface Project {
-  id: string;
-  title: string;
-  subtitle: string;
-  categoryId: string;
-  year: string;
-  technologies: string[];
-  description: string;
-  image: string;
-  gallery: string[];
-  featured: boolean;
-  client: string;
-  url: string;
-  status: string;
-}
-
-interface Category {
-  id: string;
-  name: string;
-  filter_class: string;
-}
+import { projectsApi, categoriesApi } from '@/lib/api';
+import { processImageUrls } from '@/lib/api/utils';
+import { Project, Category } from '@/lib/api/types';
 
 export default function PortfolioDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -42,30 +23,23 @@ export default function PortfolioDetailsPage({ params }: { params: Promise<{ id:
   const fetchProjectData = async () => {
     try {
       setLoading(true);
-      const [projectRes, categoriesRes, allProjectsRes] = await Promise.all([
-        fetch(`/api/portfolio/projects/${id}`),
-        fetch('/api/portfolio/categories'),
-        fetch('/api/portfolio/projects?status=published')
+      
+      const [projectData, categoriesData, allProjectsData] = await Promise.all([
+        projectsApi.getById(id),
+        categoriesApi.getAll(),
+        projectsApi.getPublished(),
       ]);
-
-      const projectData = await projectRes.json();
-      const categoriesData = await categoriesRes.json();
-      const allProjectsData = await allProjectsRes.json();
-
-      if (!projectRes.ok) {
-        setError(projectData.error || 'Project not found');
-        return;
-      }
 
       setProject(projectData);
       
-      const categories = Array.isArray(categoriesData) ? categoriesData : [];
-      const category = categories.find((c: Category) => c.id === projectData.categoryId);
-      setCategory(category || null);
+      const foundCategory = categoriesData.find((c: Category) => c.id === projectData.category_id);
+      setCategory(foundCategory || null);
 
-      const related = (Array.isArray(allProjectsData) ? allProjectsData : [])
-        .filter((p: Project) => p.id !== id && p.categoryId === projectData.categoryId)
-        .slice(0, 3);
+      const related = allProjectsData
+        .filter((p: Project) => p.id !== id && p.category_id === projectData.category_id)
+        .slice(0, 3)
+        .map((p: Project) => processImageUrls(p, ['image']));
+      
       setRelatedProjects(related);
     } catch (err) {
       setError('Failed to load project');
@@ -96,7 +70,7 @@ export default function PortfolioDetailsPage({ params }: { params: Promise<{ id:
     );
   }
 
-  const allImages = [project.image, ...project.gallery].filter(Boolean);
+  const allImages = [project.image, ...(project.gallery || [])].filter(Boolean);
 
   return (
     <div>
