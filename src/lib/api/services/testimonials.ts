@@ -8,12 +8,12 @@ export const testimonialsApi = {
   },
 
   getPublished: async (): Promise<Testimonial[]> => {
-    const response = await apiClient.get('/testimonials/published');
+    const response = await apiClient.get('/testimonials?status=published');
     return response.data.data || response.data;
   },
 
   getFeatured: async (): Promise<Testimonial[]> => {
-    const response = await apiClient.get('/testimonials/featured');
+    const response = await apiClient.get('/testimonials?featured=true');
     return response.data.data || response.data;
   },
 };

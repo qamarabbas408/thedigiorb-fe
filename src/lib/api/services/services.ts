@@ -8,12 +8,12 @@ export const servicesApi = {
   },
 
   getPublished: async (): Promise<Service[]> => {
-    const response = await apiClient.get('/services/published');
+    const response = await apiClient.get('/services?status=published');
     return response.data.data || response.data;
   },
 
   getFeatured: async (): Promise<Service[]> => {
-    const response = await apiClient.get('/services/featured');
+    const response = await apiClient.get('/services?featured=true');
     return response.data.data || response.data;
   },
 

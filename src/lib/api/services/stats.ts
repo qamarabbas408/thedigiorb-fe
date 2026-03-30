@@ -8,7 +8,7 @@ export const statsApi = {
   },
 
   getBySection: async (section: string): Promise<Stat[]> => {
-    const response = await apiClient.get(`/stats/section/${section}`);
+    const response = await apiClient.get(`/stats?section=${section}`);
     return response.data.data || response.data;
   },
 };

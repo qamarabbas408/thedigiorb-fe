@@ -8,7 +8,7 @@ export const teamApi = {
   },
 
   getActive: async (): Promise<TeamMember[]> => {
-    const response = await apiClient.get('/team/active');
+    const response = await apiClient.get('/team?status=active');
     return response.data.data || response.data;
   },
 
