@@ -1,9 +1,10 @@
 'use client';
 
-import { useActiveTeam } from '@/hooks';
+import { useActiveTeam, useStatsBySection } from '@/hooks';
 
 export default function Team() {
   const { data: members, isLoading } = useActiveTeam();
+  const { data: stats } = useStatsBySection('team');
 
   const getInitials = (name: string) => {
     return name
@@ -127,26 +128,20 @@ export default function Team() {
               ))}
             </div>
 
-            <div className="mt-16" data-aos="fade-up" data-aos-delay="500">
-              <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl p-8 md:p-12">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                  <div>
-                    <span className="block text-4xl md:text-5xl font-bold text-white mb-2">{members.length}+</span>
-                    <span className="text-slate-400 text-sm uppercase tracking-wide">Team Members</span>
-                  </div>
-                  <div className="hidden md:block border-l border-slate-700" />
-                  <div>
-                    <span className="block text-4xl md:text-5xl font-bold text-white mb-2">50+</span>
-                    <span className="text-slate-400 text-sm uppercase tracking-wide">Projects Delivered</span>
-                  </div>
-                  <div className="hidden md:block border-l border-slate-700" />
-                  <div className="col-span-2 md:col-span-1">
-                    <span className="block text-4xl md:text-5xl font-bold text-white mb-2">5+</span>
-                    <span className="text-slate-400 text-sm uppercase tracking-wide">Years Experience</span>
+            {stats && stats.length > 0 && (
+              <div className="mt-16" data-aos="fade-up" data-aos-delay="500">
+                <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl p-8 md:p-12">
+                  <div className={`grid gap-8 text-center ${stats.length === 3 ? 'grid-cols-1 md:grid-cols-3' : stats.length === 2 ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-4'}`}>
+                    {stats.map((stat, index) => (
+                      <div key={stat.id} className={index > 0 && stats.length !== 2 ? 'hidden md:block border-l border-slate-700' : ''}>
+                        <span className="block text-4xl md:text-5xl font-bold text-white mb-2">{stat.value}</span>
+                        <span className="text-slate-400 text-sm uppercase tracking-wide">{stat.label}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </>
         )}
       </div>

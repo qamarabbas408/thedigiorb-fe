@@ -59,31 +59,16 @@ export default function About() {
                   <span>24/7 Support</span>
                 </div>
               </div>
-              <div className="stats-row">
-                {!statsLoading && projectStats.length > 0 ? (
-                  projectStats.sort((a, b) => a.display_order - b.display_order).map((stat) => (
-                    <div key={stat.id} className="stat-box">
-                      <span className="number">{stat.value}</span>
-                      <span className="label">{stat.label}</span>
-                    </div>
-                  ))
-                ) : (
-                  <>
-                    <div className="stat-box">
-                      <span className="number purecounter" data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1">150</span>
-                      <span className="label">Projects Done</span>
-                    </div>
-                    <div className="stat-box">
-                      <span className="number purecounter" data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1">85</span>
-                      <span className="label">Happy Clients</span>
-                    </div>
-                    <div className="stat-box">
-                      <span className="number purecounter" data-purecounter-start="0" data-purecounter-end="95" data-purecounter-duration="1">95%</span>
-                      <span className="label">Retention</span>
-                    </div>
-                  </>
+                {!statsLoading && projectStats.length > 0 && (
+                  <div className="stats-row">
+                    {projectStats.sort((a, b) => a.display_order - b.display_order).map((stat) => (
+                      <div key={stat.id} className="stat-box">
+                        <span className="number">{stat.value}</span>
+                        <span className="label">{stat.label}</span>
+                      </div>
+                    ))}
+                  </div>
                 )}
-              </div>
               <div className="action-buttons">
                 <a href="#portfolio" className="btn btn-primary-custom">
                   View Our Work <i className="bi bi-arrow-right"></i>
