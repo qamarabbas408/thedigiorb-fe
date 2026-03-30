@@ -27,7 +27,7 @@ interface SettingsContextType {
 
 const defaultSettings: Settings = {
   company_name: 'DigitalOrbit',
-  company_email: 'support@digitalorbit.org',
+  company_email: 'support@thedigiorb.com',
   company_phone: '+92 311 1588908',
   company_address: '',
   company_description: 'Building innovative digital solutions for your business.',

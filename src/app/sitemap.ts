@@ -1,6 +1,14 @@
 import { MetadataRoute } from 'next';
+import apiClient from '@/lib/api/client';
 
-const SITE_URL = 'https://digitalorbit.org';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://thedigiorb.com';
+
+interface Project {
+  id: string;
+  slug: string;
+  title: string;
+  updated_at: string;
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_URL;
@@ -44,8 +52,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // TODO: Fetch dynamic portfolio pages from Laravel API
-  // Will be implemented in Phase 4
+  let dynamicPages: MetadataRoute.Sitemap = [];
 
-  return staticPages;
+  try {
+    const response = await apiClient.get('/portfolio/projects', {
+      params: { status: 'published' },
+    });
+    const projects: Project[] = response.data.data || response.data;
+    
+    dynamicPages = projects.map((project) => ({
+      url: `${baseUrl}/portfolio/${project.slug || project.id}`,
+      lastModified: project.updated_at ? new Date(project.updated_at) : new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    }));
+  } catch (error) {
+    console.error('Failed to fetch projects for sitemap:', error);
+  }
+
+  return [...staticPages, ...dynamicPages];
 }

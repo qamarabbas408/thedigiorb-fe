@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'DigitalOrbit - Crafting Exceptional Digital Experiences',
     description: 'Building innovative web and mobile solutions for businesses worldwide. Expert web development, mobile apps, and digital transformation services.',
-    url: 'https://digitalorbit.org',
+    url: 'https://thedigiorb.com',
     siteName: 'DigitalOrbit',
     images: [
       {
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     images: ['/assets/img/og-image.png'],
   },
   alternates: {
-    canonical: 'https://digitalorbit.org',
+    canonical: 'https://thedigiorb.com',
   },
 };
 

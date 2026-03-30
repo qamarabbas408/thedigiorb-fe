@@ -80,11 +80,12 @@ Migrate the Next.js frontend from internal API routes to Laravel backend API (`h
 
 ---
 
-## Phase 4: SEO (Pending)
+## Phase 4: SEO ✅
 
 ### 4.1 Update SEO Files
-- [ ] Update `robots.ts` to point to Laravel routes
-- [ ] Update `sitemap.ts` to point to Laravel routes (fetch from API)
+- [x] Update `robots.ts` - Already correct (disallows /admin/, /api/)
+- [x] Update `sitemap.ts` - Fetches dynamic portfolio pages from Laravel API
+- [x] Added `NEXT_PUBLIC_SITE_URL` to `.env.local`
 
 ---
 
@@ -108,4 +109,4 @@ Migrate the Next.js frontend from internal API routes to Laravel backend API (`h
 - Phase 1: ✅ Complete
 - Phase 2: ✅ Complete
 - Phase 3: ✅ Complete
-- Phase 4: ⬜ Pending (SEO files)
+- Phase 4: ✅ Complete

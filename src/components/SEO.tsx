@@ -12,7 +12,7 @@ interface SEOProps {
   author?: string;
 }
 
-const SITE_URL = 'https://digitalorbit.org';
+const SITE_URL = 'https://thedigiorb.com';
 const DEFAULT_IMAGE = '/assets/img/og-image.png';
 
 export default function SEO({ 

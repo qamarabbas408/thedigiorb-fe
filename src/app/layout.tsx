@@ -7,7 +7,7 @@ import ClientLayout from "@/components/ClientLayout";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://digitalorbit.org'),
+  metadataBase: new URL('https://thedigiorb.com'),
   title: {
     default: "DigitalOrbit - Crafting Exceptional Digital Experiences",
     template: "%s | DigitalOrbit",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://digitalorbit.org",
+    url: "https://thedigiorb.com",
     siteName: "DigitalOrbit",
     title: "DigitalOrbit - Crafting Exceptional Digital Experiences",
     description: "Building innovative web and mobile solutions for businesses worldwide. Expert web development, mobile apps, and digital transformation services.",
