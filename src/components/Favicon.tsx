@@ -7,7 +7,7 @@ export default function Favicon() {
   const { settings, loading } = useSettings();
 
   useEffect(() => {
-    if (!loading && settings.favicon) {
+    if (!loading && settings?.favicon) {
       const links = document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]');
       links.forEach((link) => {
         const htmlLink = link as HTMLLinkElement;
@@ -22,7 +22,7 @@ export default function Favicon() {
         faviconLink.rel = 'icon';
         document.head.appendChild(faviconLink);
       }
-      faviconLink.href = settings.favicon;
+      faviconLink.href = settings?.favicon || '';
       faviconLink.setAttribute('data-dynamic', 'true');
 
       let appleTouchIcon = document.querySelector('link[rel="apple-touch-icon"]') as HTMLLinkElement;
@@ -31,10 +31,10 @@ export default function Favicon() {
         appleTouchIcon.rel = 'apple-touch-icon';
         document.head.appendChild(appleTouchIcon);
       }
-      appleTouchIcon.href = settings.favicon;
+      appleTouchIcon.href = settings?.favicon || '';
       appleTouchIcon.setAttribute('data-dynamic', 'true');
     }
-  }, [settings.favicon, loading]);
+  }, [settings?.favicon, loading]);
 
   return null;
 }

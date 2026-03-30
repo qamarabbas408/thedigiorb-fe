@@ -1,27 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSettings } from "@/context/SettingsContext";
+import { useStatsBySection } from '@/hooks';
+import { useSubmitContact } from '@/hooks';
 import CustomToaster, { showToast } from '@/components/CustomToaster';
 import { 
   Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram,
-  Send, Lock, Loader2, User, MessageSquare, StickyNote
+  Send, Lock, Loader2
 } from 'lucide-react';
-
-interface Stat {
-  id: string;
-  section: string;
-  label: string;
-  value: string;
-  icon: string;
-  displayOrder: number;
-  status: string;
-}
 
 export default function Contact() {
   const { settings, loading } = useSettings();
-  const [stats, setStats] = useState<Stat[]>([]);
-  const [statsLoading, setStatsLoading] = useState(true);
+  const { data: stats } = useStatsBySection('contact');
+  const submitContact = useSubmitContact();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,23 +21,6 @@ export default function Contact() {
     message: '',
     phone: ''
   });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-
-  useEffect(() => {
-    fetchStats();
-  }, []);
-
-  const fetchStats = async () => {
-    try {
-      const res = await fetch('/api/stats?section=contact&status=published');
-      const data = await res.json();
-      setStats(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error('Failed to fetch stats:', error);
-    } finally {
-      setStatsLoading(false);
-    }
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -53,37 +28,18 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('loading');
-
+    
     try {
-      const res = await fetch('/api/contacts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || 'Failed to send message');
-      }
-
-      setStatus('success');
+      await submitContact.mutateAsync(formData);
       setFormData({ name: '', email: '', subject: '', message: '', phone: '' });
       showToast.success('Your message has been sent successfully! We will get back to you soon.');
-      
-      setTimeout(() => setStatus('idle'), 3000);
     } catch (error) {
-      setStatus('error');
       showToast.error(error instanceof Error ? error.message : 'Failed to send message. Please try again.');
-      
-      setTimeout(() => setStatus('idle'), 3000);
     }
   };
 
   const inputClasses = "w-full px-4 py-3 pl-12 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-gray-700 placeholder-gray-400";
   const labelClasses = "block text-sm font-medium text-gray-700 mb-2";
-  const iconClasses = "absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5";
 
   return (
     <>
@@ -102,7 +58,6 @@ export default function Contact() {
               <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 text-white h-full">
                 <div className="mb-8">
                   <span className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-medium mb-4">
-                    <MessageSquare className="w-4 h-4" />
                     Get In Touch
                   </span>
                   <h3 className="text-2xl font-bold mb-2 text-light">Let&apos;s Build Something Amazing</h3>
@@ -116,8 +71,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-sm text-slate-400 mb-1">Email Us</p>
-                      <a href={`mailto:${loading ? '' : settings.company_email}`} className="text-white hover:text-blue-300 transition-colors">
-                        {loading ? 'Loading...' : settings.company_email}
+                      <a href={`mailto:${loading ? '' : settings?.company_email}`} className="text-white hover:text-blue-300 transition-colors">
+                        {loading ? 'Loading...' : settings?.company_email}
                       </a>
                     </div>
                   </div>
@@ -128,13 +83,13 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-sm text-slate-400 mb-1">Call Us</p>
-                      <a href={`tel:${loading ? '' : settings.company_phone.replace(/\s/g, '')}`} className="text-white hover:text-blue-300 transition-colors">
-                        {loading ? 'Loading...' : settings.company_phone}
+                      <a href={`tel:${loading ? '' : settings?.company_phone?.replace(/\s/g, '')}`} className="text-white hover:text-blue-300 transition-colors">
+                        {loading ? 'Loading...' : settings?.company_phone}
                       </a>
                     </div>
                   </div>
 
-                  {settings.company_address && (
+                  {settings?.company_address && (
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
                         <MapPin className="w-5 h-5" />
@@ -149,8 +104,8 @@ export default function Contact() {
 
                 {/* Stats */}
                 <div className="grid grid-cols-3 gap-4 py-6 border-t border-b border-white/10 mb-8">
-                  {!statsLoading && stats.length > 0 ? (
-                    stats.sort((a, b) => a.displayOrder - b.displayOrder).map((stat) => (
+                  {stats && stats.length > 0 ? (
+                    stats.sort((a, b) => a.display_order - b.display_order).map((stat) => (
                       <div key={stat.id} className="text-center">
                         <p className="text-2xl font-bold text-blue-400">{stat.value}</p>
                         <p className="text-xs text-slate-400">{stat.label}</p>
@@ -178,16 +133,16 @@ export default function Contact() {
                 <div>
                   <p className="text-sm text-slate-400 mb-3">Follow Us</p>
                   <div className="flex gap-3">
-                    <a href={settings.facebook_url || '#'} aria-label="Facebook" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors">
+                    <a href={settings?.facebook_url || '#'} aria-label="Facebook" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors">
                       <Facebook className="w-5 h-5" />
                     </a>
-                    <a href={settings.twitter_url || '#'} aria-label="Twitter" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors">
+                    <a href={settings?.twitter_url || '#'} aria-label="Twitter" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors">
                       <Twitter className="w-5 h-5" />
                     </a>
-                    <a href={settings.linkedin_url || '#'} aria-label="LinkedIn" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors">
+                    <a href={settings?.linkedin_url || '#'} aria-label="LinkedIn" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors">
                       <Linkedin className="w-5 h-5" />
                     </a>
-                    <a href={settings.instagram_url || '#'} aria-label="Instagram" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors">
+                    <a href={settings?.instagram_url || '#'} aria-label="Instagram" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors">
                       <Instagram className="w-5 h-5" />
                     </a>
                   </div>
@@ -210,88 +165,77 @@ export default function Contact() {
 
                 <form onSubmit={handleSubmit} noValidate className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="relative">
+                    <div>
                       <label className={labelClasses}>Your Name *</label>
-                      <div className="relative">
-                       
-                        <input 
-                          type="text" 
-                          name="name" 
-                          placeholder="John Doe" 
-                          required 
-                          value={formData.name}
-                          onChange={handleChange}
-                          className={inputClasses}
-                        />
-                      </div>
+                      <input 
+                        type="text" 
+                        name="name" 
+                        placeholder="John Doe" 
+                        required 
+                        value={formData.name}
+                        onChange={handleChange}
+                        className={inputClasses}
+                      />
                     </div>
 
-                    <div className="relative">
+                    <div>
                       <label className={labelClasses}>Email Address *</label>
-                      <div className="relative">
-                        <input 
-                          type="email" 
-                          name="email" 
-                          placeholder="john@example.com" 
-                          required 
-                          value={formData.email}
-                          onChange={handleChange}
-                          className={inputClasses}
-                        />
-                      </div>
+                      <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="john@example.com" 
+                        required 
+                        value={formData.email}
+                        onChange={handleChange}
+                        className={inputClasses}
+                      />
                     </div>
 
-                    <div className="relative">
+                    <div>
                       <label className={labelClasses}>Phone Number</label>
-                      <div className="relative">
-                        <input 
-                          type="tel" 
-                          name="phone" 
-                          placeholder="+92 300 1234567" 
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className={inputClasses}
-                        />
-                      </div>
+                      <input 
+                        type="tel" 
+                        name="phone" 
+                        placeholder="+92 300 1234567" 
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className={inputClasses}
+                      />
                     </div>
 
-                    <div className="relative">
+                    <div>
                       <label className={labelClasses}>Subject</label>
-                      <div className="relative">
-                        <input 
-                          type="text" 
-                          name="subject" 
-                          placeholder="How can we help?" 
-                          value={formData.subject}
-                          onChange={handleChange}
-                          className={inputClasses}
-                        />
-                      </div>
+                      <input 
+                        type="text" 
+                        name="subject" 
+                        placeholder="How can we help?" 
+                        value={formData.subject}
+                        onChange={handleChange}
+                        className={inputClasses}
+                      />
                     </div>
 
                     <div className="md:col-span-2">
                       <label className={labelClasses}>Your Message *</label>
-                      <div className="relative">
-                        <textarea 
-                          name="message" 
-                          rows={5}
-                          placeholder="Tell us about your project..." 
-                          required 
-                          value={formData.message}
-                          onChange={handleChange}
-                          className={`${inputClasses} resize-none pl-12`}
-                        ></textarea>
-                      </div>
+                      <textarea 
+                        name="message" 
+                        rows={5}
+                        placeholder="Tell us about your project..." 
+                        required 
+                        value={formData.message}
+                        onChange={handleChange}
+                        className={`${inputClasses} resize-none`}
+                      ></textarea>
                     </div>
                   </div>
 
                   <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-4 border-t border-gray-100">
                     <button 
                       type="submit" 
-                      disabled={status === 'loading'}
+                      disabled={submitContact.isPending}
                       className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                     >
-                      {status === 'loading' ? (
+                      {submitContact.isPending ? (
                         <>
                           <Loader2 className="w-5 h-5 animate-spin" />
                           Sending...

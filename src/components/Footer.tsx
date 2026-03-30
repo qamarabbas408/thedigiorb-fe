@@ -14,33 +14,33 @@ export default function Footer() {
             <Link href="/" className="logo d-flex align-items-center mb-4">
               {loading ? (
                 <span className="sitename">...</span>
-              ) : settings.logo_type === 'image' && settings.logo_image ? (
+              ) : settings?.logo_type === 'image' && settings?.logo_image ? (
                 <img 
                   src={settings.logo_image} 
-                  alt={settings.company_name || 'Logo'} 
+                  alt={settings?.company_name || 'Logo'} 
                   style={{
                     height: "50px",
                     maxHeight: "50px",
                   }}
                 />
               ) : (
-                <span className="sitename">{settings.company_name}</span>
+                <span className="sitename">{settings?.company_name}</span>
               )}
             </Link>
             <p>
-              {loading ? 'Loading...' : settings.company_description}
+              {loading ? 'Loading...' : settings?.company_description}
             </p>
             <div className="social-links d-flex mt-4">
-              <a href={settings.facebook_url} aria-label="Facebook">
+              <a href={settings?.facebook_url} aria-label="Facebook">
                 <i className="bi bi-facebook"></i>
               </a>
-              <a href={settings.twitter_url} aria-label="Twitter">
+              <a href={settings?.twitter_url} aria-label="Twitter">
                 <i className="bi bi-twitter-x"></i>
               </a>
-              <a href={settings.instagram_url} aria-label="Instagram">
+              <a href={settings?.instagram_url} aria-label="Instagram">
                 <i className="bi bi-instagram"></i>
               </a>
-              <a href={settings.linkedin_url} aria-label="LinkedIn">
+              <a href={settings?.linkedin_url} aria-label="LinkedIn">
                 <i className="bi bi-linkedin"></i>
               </a>
             </div>
@@ -129,7 +129,7 @@ export default function Footer() {
             <div className="copyright">
               <p>
                 © <span>Copyright</span>{" "}
-                <strong className="sitename">{loading ? '...' : settings.company_name}</strong>. All Rights
+                <strong className="sitename">{loading ? '...' : settings?.company_name}</strong>. All Rights
                 Reserved.
               </p>
             </div>

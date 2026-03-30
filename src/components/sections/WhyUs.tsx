@@ -1,36 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-
-interface Stat {
-  id: string;
-  section: string;
-  label: string;
-  value: string;
-  icon: string;
-  displayOrder: number;
-  status: string;
-}
+import { useStatsBySection } from '@/hooks';
 
 export default function WhyUs() {
-  const [stats, setStats] = useState<Stat[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchStats();
-  }, []);
-
-  const fetchStats = async () => {
-    try {
-      const res = await fetch('/api/stats?section=why_us&status=published');
-      const data = await res.json();
-      setStats(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error('Failed to fetch stats:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { data: stats, isLoading } = useStatsBySection('why_us');
 
   return (
     <section id="why-us" className="why-us section light-background">
@@ -50,8 +23,8 @@ export default function WhyUs() {
               <p className="description">We combine technical expertise with creative thinking to deliver solutions that drive real business growth. Our proven methodology ensures transparency, efficiency, and exceptional results every time.</p>
 
               <div className="stat-cards">
-                {!loading && stats.length > 0 ? (
-                  stats.sort((a, b) => a.displayOrder - b.displayOrder).map((stat, index) => (
+                {!isLoading && stats && stats.length > 0 ? (
+                  stats.sort((a, b) => a.display_order - b.display_order).map((stat, index) => (
                     <div key={stat.id} className="stat-card" data-aos="zoom-in" data-aos-delay={300 + (index * 50)}>
                       <div className="stat-value">
                         {stat.value}
@@ -84,8 +57,8 @@ export default function WhyUs() {
               </div>
 
               <div className="action-buttons">
-                <a href="#" className="btn-main">Get Started Today</a>
-                <a href="#" className="btn-outline">Explore Portfolio</a>
+                <a href="#contact" className="btn-main">Get Started Today</a>
+                <a href="#portfolio" className="btn-outline">Explore Portfolio</a>
               </div>
             </div>
           </div>
@@ -100,7 +73,7 @@ export default function WhyUs() {
                 <div className="feature-content">
                   <h4>Rapid Implementation</h4>
                   <p>We deliver projects on time without compromising quality. Our agile process ensures quick iterations and fast turnaround without sacrificing excellence.</p>
-                  <a href="#" className="feature-link">Discover How <i className="bi bi-chevron-right"></i></a>
+                  <a href="#services" className="feature-link">Discover How <i className="bi bi-chevron-right"></i></a>
                 </div>
               </div>
 
@@ -111,7 +84,7 @@ export default function WhyUs() {
                 <div className="feature-content">
                   <h4>Analytics-First Approach</h4>
                   <p>Every decision we make is backed by data. We track metrics, analyze results, and continuously optimize to ensure maximum ROI for your investment.</p>
-                  <a href="#" className="feature-link">Discover How <i className="bi bi-chevron-right"></i></a>
+                  <a href="#portfolio" className="feature-link">Discover How <i className="bi bi-chevron-right"></i></a>
                 </div>
               </div>
 
@@ -122,7 +95,7 @@ export default function WhyUs() {
                 <div className="feature-content">
                   <h4>Award-Winning Team</h4>
                   <p>Our team of certified experts brings diverse skills and proven experience. We're passionate about technology and committed to exceeding expectations.</p>
-                  <a href="#" className="feature-link">Discover How <i className="bi bi-chevron-right"></i></a>
+                  <a href="#team" className="feature-link">Discover How <i className="bi bi-chevron-right"></i></a>
                 </div>
               </div>
             </div>

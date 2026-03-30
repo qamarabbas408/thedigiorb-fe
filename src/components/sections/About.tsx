@@ -1,41 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { useSettings } from "@/context/SettingsContext";
-
-interface Stat {
-  id: string;
-  section: string;
-  label: string;
-  value: string;
-  icon: string;
-  displayOrder: number;
-  status: string;
-}
+import { useStatsBySection } from '@/hooks';
 
 export default function About() {
   const { settings, loading } = useSettings();
-  const [stats, setStats] = useState<Stat[]>([]);
-  const [statsLoading, setStatsLoading] = useState(true);
+  const { data: stats, isLoading: statsLoading } = useStatsBySection('about');
 
-  useEffect(() => {
-    fetchStats();
-  }, []);
-
-  const fetchStats = async () => {
-    try {
-      const res = await fetch('/api/stats?section=about&status=published');
-      const data = await res.json();
-      setStats(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error('Failed to fetch stats:', error);
-    } finally {
-      setStatsLoading(false);
-    }
-  };
-
-  const experienceStat = stats.find(s => s.label.toLowerCase().includes('excellence') || s.label.toLowerCase().includes('years'));
-  const projectStats = stats.filter(s => !s.label.toLowerCase().includes('excellence') && !s.label.toLowerCase().includes('years'));
+  const experienceStat = stats?.find(s => s.label.toLowerCase().includes('excellence') || s.label.toLowerCase().includes('years'));
+  const projectStats = stats?.filter(s => !s.label.toLowerCase().includes('excellence') && !s.label.toLowerCase().includes('years')) || [];
 
   return (
     <section id="about" className="about section">
@@ -88,7 +61,7 @@ export default function About() {
               </div>
               <div className="stats-row">
                 {!statsLoading && projectStats.length > 0 ? (
-                  projectStats.sort((a, b) => a.displayOrder - b.displayOrder).map((stat) => (
+                  projectStats.sort((a, b) => a.display_order - b.display_order).map((stat) => (
                     <div key={stat.id} className="stat-box">
                       <span className="number">{stat.value}</span>
                       <span className="label">{stat.label}</span>
@@ -121,8 +94,8 @@ export default function About() {
                   </div>
                   <div className="text">
                     <span>Call Us Today</span>
-                    <a href={`tel:${loading ? '' : settings.company_phone.replace(/\s/g, '')}`}>
-                      {loading ? 'Loading...' : settings.company_phone}
+                    <a href={`tel:${loading ? '' : settings?.company_phone?.replace(/\s/g, '')}`}>
+                      {loading ? 'Loading...' : settings?.company_phone}
                     </a>
                   </div>
                 </div>

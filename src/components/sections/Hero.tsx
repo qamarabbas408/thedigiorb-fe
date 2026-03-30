@@ -1,36 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-
-interface Stat {
-  id: string;
-  section: string;
-  label: string;
-  value: string;
-  icon: string;
-  displayOrder: number;
-  status: string;
-}
+import { useStatsBySection } from '@/hooks';
 
 export default function Hero() {
-  const [stats, setStats] = useState<Stat[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchStats();
-  }, []);
-
-  const fetchStats = async () => {
-    try {
-      const res = await fetch('/api/stats?section=hero&status=published');
-      const data = await res.json();
-      setStats(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error('Failed to fetch stats:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { data: stats, isLoading } = useStatsBySection('hero');
 
   return (
     <section id="hero" className="hero section">
@@ -62,8 +35,8 @@ export default function Hero() {
           </div>
           <div className="col-lg-6" data-aos="fade-left" data-aos-delay="300">
             <div className="stats-grid">
-              {!loading && stats.length > 0 ? (
-                stats.sort((a, b) => a.displayOrder - b.displayOrder).map((stat, index) => (
+              {!isLoading && stats && stats.length > 0 ? (
+                stats.sort((a, b) => a.display_order - b.display_order).map((stat, index) => (
                   <div 
                     key={stat.id} 
                     className={`stat-card ${index === 0 ? 'stat-card-primary' : index === 3 ? 'stat-card-accent' : ''}`}

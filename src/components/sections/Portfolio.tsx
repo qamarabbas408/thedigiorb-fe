@@ -1,63 +1,21 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-
-interface Project {
-  id: string;
-  title: string;
-  subtitle: string;
-  categoryId: string;
-  year: string;
-  technologies: string[];
-  description: string;
-  image: string;
-  featured: boolean;
-  client: string;
-  url: string;
-  status: string;
-}
-
-interface Category {
-  id: string;
-  name: string;
-  filter_class: string;
-}
+import { usePublishedProjects, useCategories } from '@/hooks';
 
 export default function Portfolio() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: projects, isLoading } = usePublishedProjects();
+  const { data: categories } = useCategories();
   const [activeFilter, setActiveFilter] = useState('*');
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const [projectsRes, categoriesRes] = await Promise.all([
-        fetch('/api/portfolio/projects?status=published'),
-        fetch('/api/portfolio/categories')
-      ]);
-      const projectsData = await projectsRes.json();
-      const categoriesData = await categoriesRes.json();
-      setProjects(Array.isArray(projectsData) ? projectsData : []);
-      setCategories(Array.isArray(categoriesData) ? categoriesData : []);
-    } catch (error) {
-      console.error('Failed to fetch portfolio data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const getCategoryName = (categoryId: string) => {
-    const category = categories.find(c => c.id === categoryId);
+    const category = categories?.find(c => c.id === categoryId);
     return category?.name || categoryId;
   };
 
   const getFilterClass = (categoryId: string) => {
-    const category = categories.find(c => c.id === categoryId);
+    const category = categories?.find(c => c.id === categoryId);
     return category?.filter_class || `filter-${categoryId}`;
   };
 
@@ -65,12 +23,12 @@ export default function Portfolio() {
     setActiveFilter(filterClass);
   };
 
-  const filteredProjects = projects.filter(project => {
+  const filteredProjects = projects?.filter(project => {
     if (activeFilter === '*') return true;
-    return getFilterClass(project.categoryId) === activeFilter;
-  });
+    return getFilterClass(project.category_id) === activeFilter;
+  }) || [];
 
-  if (loading) {
+  if (isLoading) {
     return (
       <section id="portfolio" className="portfolio section">
         <div className="container section-title" data-aos="fade-up">
@@ -99,7 +57,7 @@ export default function Portfolio() {
               >
                 All Projects
               </li>
-              {categories.map((category) => (
+              {categories?.map((category) => (
                 <li 
                   key={category.id}
                   data-filter={category.filter_class}
@@ -113,7 +71,7 @@ export default function Portfolio() {
           </div>
 
           <div className="row g-4 portfolio-grid" data-aos="fade-up" data-aos-delay="200">
-            {projects.length === 0 ? (
+            {projects?.length === 0 ? (
               <div className="col-12">
                 <div className="empty-portfolio">
                   <i className="bi bi-briefcase"></i>
@@ -131,7 +89,6 @@ export default function Portfolio() {
                   <h3>No projects in this category</h3>
                   <p>We don&apos;t have any projects in this category yet. Check back soon!</p>
                   <button 
-                  
                     onClick={() => handleFilterClick('*')} 
                     className="btn btn-primary mt-3 p-3"
                   >
@@ -143,7 +100,7 @@ export default function Portfolio() {
               filteredProjects.map((project) => (
                 <div 
                   key={project.id} 
-                  className={`col-lg-4 col-md-6 portfolio-item ${getFilterClass(project.categoryId)}`}
+                  className={`col-lg-4 col-md-6 portfolio-item ${getFilterClass(project.category_id)}`}
                 >
                   <div className={`project-card ${project.featured ? 'featured' : ''}`}>
                     <Link href={`/portfolio/${project.id}`} className="image-wrapper">
@@ -166,7 +123,7 @@ export default function Portfolio() {
                           </span>
                         </div>
                       </div>
-                      <span className="category-badge">{getCategoryName(project.categoryId)}</span>
+                      <span className="category-badge">{getCategoryName(project.category_id)}</span>
                       {project.featured && (
                         <span className="featured-badge">
                           <i className="bi bi-star-fill"></i> Featured
@@ -197,7 +154,7 @@ export default function Portfolio() {
             )}
           </div>
 
-          {projects.length > 0 && (
+          {projects && projects.length > 0 && (
             <div className="cta-section" data-aos="zoom-in" data-aos-delay="300">
               <div className="cta-content">
                 <span className="cta-label">

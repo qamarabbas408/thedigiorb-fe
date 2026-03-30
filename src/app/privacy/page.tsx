@@ -44,7 +44,7 @@ export default function PrivacyPage() {
               <div className="section-number">01</div>
               <div className="section-content">
                 <h2>Introduction</h2>
-                <p>This Privacy Policy explains how {settings.company_name || 'we'} (&quot;Company&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) collects, uses, discloses, and safeguards information when you visit our website or use our services.</p>
+                <p>This Privacy Policy explains how {settings?.company_name || 'we'} (&quot;Company&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) collects, uses, discloses, and safeguards information when you visit our website or use our services.</p>
                 <p>By using our services, you agree to the collection and use of information in accordance with this policy.</p>
               </div>
             </div>
@@ -231,17 +231,17 @@ export default function PrivacyPage() {
                 <div className="contact-cards">
                   <div className="contact-card">
                     <i className="bi bi-envelope"></i>
-                    <span>{loading ? 'Loading...' : settings.company_email}</span>
+                    <span>{loading ? 'Loading...' : settings?.company_email}</span>
                   </div>
-                  {settings.company_address && (
+                  {settings?.company_address && (
                     <div className="contact-card">
                       <i className="bi bi-geo-alt"></i>
-                      <span>{settings.company_address}</span>
+                      <span>{settings?.company_address}</span>
                     </div>
                   )}
                   <div className="contact-card">
                     <i className="bi bi-telephone"></i>
-                    <span>{loading ? 'Loading...' : settings.company_phone}</span>
+                    <span>{loading ? 'Loading...' : settings?.company_phone}</span>
                   </div>
                 </div>
               </div>

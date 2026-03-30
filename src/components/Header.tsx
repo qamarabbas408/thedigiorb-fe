@@ -12,17 +12,17 @@ export default function Header() {
         <Link href="/" className="logo d-flex align-items-center me-auto me-xl-0">
           {loading ? (
             <h1 className="sitename">...</h1>
-          ) : settings.logo_type === 'image' && settings.logo_image ? (
+          ) : settings?.logo_type === 'image' && settings?.logo_image ? (
             <img 
               src={settings.logo_image} 
-              alt={settings.company_name || 'Logo'} 
+              alt={settings?.company_name || 'Logo'} 
               style={{
                 height: "50px",
                 maxHeight: "50px",
               }}
             />
           ) : (
-            <h1 className="sitename">{settings.company_name}</h1>
+            <h1 className="sitename">{settings?.company_name}</h1>
           )}
         </Link>
 

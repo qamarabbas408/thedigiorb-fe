@@ -4,6 +4,7 @@ import Favicon from "@/components/Favicon";
 import Script from "next/script";
 import { SettingsProvider } from "@/context/SettingsContext";
 import ClientLayout from "@/components/ClientLayout";
+import { QueryProvider } from "@/components/providers/QueryProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://digitalorbit.org'),
@@ -68,6 +69,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <QueryProvider>
         {/* Favicons */}
         <link href="/assets/img/favicon.png" rel="icon" />
         <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
@@ -159,6 +161,7 @@ export default function RootLayout({
 
         {/* Main JS File */}
         <Script src="/assets/js/main.js" strategy="afterInteractive" />
+        </QueryProvider>
       </body>
     </html>
   );

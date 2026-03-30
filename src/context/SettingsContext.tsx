@@ -1,6 +1,7 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, ReactNode } from 'react';
+import { useSettings } from '@/hooks';
 
 interface Settings {
   company_name: string;
@@ -10,6 +11,7 @@ interface Settings {
   company_description: string;
   logo_type: 'image' | 'text';
   logo_image: string;
+  logo_text: string;
   favicon: string;
   facebook_url: string;
   twitter_url: string;
@@ -18,8 +20,9 @@ interface Settings {
 }
 
 interface SettingsContextType {
-  settings: Settings;
+  settings: Settings | undefined;
   loading: boolean;
+  error: Error | null;
 }
 
 const defaultSettings: Settings = {
@@ -30,6 +33,7 @@ const defaultSettings: Settings = {
   company_description: 'Building innovative digital solutions for your business.',
   logo_type: 'text',
   logo_image: '',
+  logo_text: '',
   favicon: '',
   facebook_url: '#',
   twitter_url: '#',
@@ -39,30 +43,31 @@ const defaultSettings: Settings = {
 
 const SettingsContext = createContext<SettingsContextType>({
   settings: defaultSettings,
-  loading: true
+  loading: true,
+  error: null
 });
 
-export function useSettings() {
+export function useSettingsContext() {
   return useContext(SettingsContext);
 }
 
+// Keep original export name for backward compatibility
+export { useSettingsContext as useSettings };
+
 export function SettingsProvider({ children }: { children: ReactNode }) {
-  const [settings, setSettings] = useState<Settings>(defaultSettings);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('/api/settings')
-      .then(res => res.json())
-      .then(data => {
-        setSettings(prev => ({ ...prev, ...data }));
-      })
-      .catch(err => console.error('Failed to fetch settings:', err))
-      .finally(() => setLoading(false));
-  }, []);
-
+  const { data, isLoading, error } = useSettings();
+  
+  const settings = data || defaultSettings;
+  
   return (
-    <SettingsContext.Provider value={{ settings, loading }}>
+    <SettingsContext.Provider value={{ 
+      settings, 
+      loading: isLoading,
+      error 
+    }}>
       {children}
     </SettingsContext.Provider>
   );
 }
+
+export { defaultSettings };

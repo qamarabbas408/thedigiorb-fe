@@ -1,38 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-
-interface TeamMember {
-  id: string;
-  name: string;
-  role: string;
-  bio: string;
-  image: string;
-  facebook_url: string;
-  twitter_url: string;
-  linkedin_url: string;
-  instagram_url: string;
-}
+import { useActiveTeam } from '@/hooks';
 
 export default function Team() {
-  const [members, setMembers] = useState<TeamMember[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchTeamMembers();
-  }, []);
-
-  const fetchTeamMembers = async () => {
-    try {
-      const res = await fetch('/api/team');
-      const data = await res.json();
-      setMembers(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error('Failed to fetch team members:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { data: members, isLoading } = useActiveTeam();
 
   const getInitials = (name: string) => {
     return name
@@ -43,7 +14,7 @@ export default function Team() {
       .slice(0, 2);
   };
 
-  const hasSocialLinks = (member: TeamMember) => {
+  const hasSocialLinks = (member: any) => {
     return (
       (member.facebook_url && member.facebook_url !== '#') ||
       (member.twitter_url && member.twitter_url !== '#') ||
@@ -60,11 +31,11 @@ export default function Team() {
           <p className="text-slate-500">Meet the talented individuals behind our success</p>
         </div>
 
-        {loading ? (
+        {isLoading ? (
           <div className="flex justify-center py-12">
             <div className="w-10 h-10 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin" />
           </div>
-        ) : members.length === 0 ? (
+        ) : !members || members.length === 0 ? (
           <div className="text-center py-12">
             <i className="bi bi-people text-6xl text-gray-300 mb-4" />
             <p className="text-gray-500">Our team is growing. Check back soon!</p>

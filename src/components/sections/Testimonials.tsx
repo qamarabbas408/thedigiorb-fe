@@ -1,42 +1,12 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useSettings } from '@/context/SettingsContext';
-
-interface Testimonial {
-  id: string;
-  name: string;
-  title: string;
-  company: string;
-  content: string;
-  rating: number;
-  image: string;
-  featured: boolean;
-  status: string;
-}
+import { usePublishedTestimonials } from '@/hooks';
 
 export default function Testimonials() {
-  const { settings } = useSettings();
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: testimonials, isLoading } = usePublishedTestimonials();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  useEffect(() => {
-    fetchTestimonials();
-  }, []);
-
-  const fetchTestimonials = async () => {
-    try {
-      const res = await fetch('/api/testimonials');
-      const data = await res.json();
-      setTestimonials(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error('Failed to fetch testimonials:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const getInitials = (name: string) => {
     return name
@@ -48,31 +18,33 @@ export default function Testimonials() {
   };
 
   const nextSlide = useCallback(() => {
+    if (!testimonials || testimonials.length === 0) return;
     setCurrentIndex(prev => (prev + 1) % testimonials.length);
-  }, [testimonials.length]);
+  }, [testimonials]);
 
   const prevSlide = useCallback(() => {
+    if (!testimonials || testimonials.length === 0) return;
     setCurrentIndex(prev => (prev - 1 + testimonials.length) % testimonials.length);
-  }, [testimonials.length]);
+  }, [testimonials]);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
   };
 
   useEffect(() => {
-    if (!isAutoPlaying || testimonials.length <= 1) return;
+    if (!isAutoPlaying || !testimonials || testimonials.length <= 1) return;
     
     const interval = setInterval(() => {
       nextSlide();
     }, 5000);
     
     return () => clearInterval(interval);
-  }, [isAutoPlaying, testimonials.length, nextSlide]);
+  }, [isAutoPlaying, testimonials, nextSlide]);
 
   const handleMouseEnter = () => setIsAutoPlaying(false);
   const handleMouseLeave = () => setIsAutoPlaying(true);
 
-  if (loading) {
+  if (isLoading) {
     return (
       <section id="testimonials" className="section">
         <div className="container">
@@ -85,7 +57,7 @@ export default function Testimonials() {
     );
   }
 
-  if (testimonials.length === 0) {
+  if (!testimonials || testimonials.length === 0) {
     return (
       <section id="testimonials" className="section">
         <div className="container">

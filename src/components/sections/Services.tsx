@@ -1,62 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-
-interface Service {
-  id: string;
-  title: string;
-  description: string;
-  icon: string;
-  featured: boolean;
-  displayOrder: number;
-  status: string;
-}
-
-interface Stat {
-  id: string;
-  section: string;
-  label: string;
-  value: string;
-  icon: string;
-  displayOrder: number;
-  status: string;
-}
+import { usePublishedServices } from '@/hooks';
+import { useStatsBySection } from '@/hooks';
 
 export default function Services() {
-  const [services, setServices] = useState<Service[]>([]);
-  const [stats, setStats] = useState<Stat[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: services, isLoading } = usePublishedServices();
+  const { data: stats } = useStatsBySection('services');
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const [servicesRes, statsRes] = await Promise.all([
-        fetch('/api/services?status=published'),
-        fetch('/api/stats?section=services&status=published')
-      ]);
-      const [servicesData, statsData] = await Promise.all([
-        servicesRes.json(),
-        statsRes.json()
-      ]);
-      setServices(Array.isArray(servicesData) ? servicesData : []);
-      setStats(Array.isArray(statsData) ? statsData : []);
-    } catch (error) {
-      console.error('Failed to fetch data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
+  if (isLoading) {
     return null;
   }
 
-  const publishedServices = services.filter(s => s.status === 'published');
-  const featuredServices = services.filter(s => s.featured && s.status === 'published');
-  const regularServices = publishedServices.filter(s => !s.featured);
+  const featuredServices = services?.filter(s => s.featured) || [];
+  const regularServices = services?.filter(s => !s.featured) || [];
 
   return (
     <section id="services" className="services section">
@@ -106,8 +62,8 @@ export default function Services() {
 
         <div className="stats-row" data-aos="fade-up" data-aos-delay="400">
           <div className="row g-4 justify-content-center">
-            {!loading && stats.length > 0 ? (
-              stats.sort((a, b) => a.displayOrder - b.displayOrder).map((stat) => (
+            {stats && stats.length > 0 ? (
+              stats.sort((a, b) => a.display_order - b.display_order).map((stat) => (
                 <div key={stat.id} className="col-6 col-md-3">
                   <div className="stat-item">
                     <span className="stat-number">{stat.value}</span>
