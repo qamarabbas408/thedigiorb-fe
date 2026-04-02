@@ -53,16 +53,26 @@ export default function Team() {
                   <div className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
                     <div className="relative overflow-hidden">
                       {member.image ? (
-                        <img 
-                          src={member.image}
-                          className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" 
-                          alt={member.name}
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).style.display = 'none';
-                          }}
-                        />
+                        <div className="w-full aspect-[4/5] bg-slate-100">
+                          <img 
+                            src={member.image}
+                            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110" 
+                            alt={member.name}
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              const parent = target.parentElement;
+                              if (parent) {
+                                parent.innerHTML = `
+                                  <div class="w-full aspect-[4/5] bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
+                                    <span class="text-5xl font-bold text-white">${getInitials(member.name)}</span>
+                                  </div>
+                                `;
+                              }
+                            }}
+                          />
+                        </div>
                       ) : (
-                        <div className="w-full h-64 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
+                        <div className="w-full aspect-[4/5] bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
                           <span className="text-5xl font-bold text-white">
                             {getInitials(member.name)}
                           </span>
