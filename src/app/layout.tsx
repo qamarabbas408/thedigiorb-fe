@@ -108,6 +108,17 @@ export default function RootLayout({
         {/* Main CSS File */}
         <link href="/assets/css/main.css" rel="stylesheet" />
 
+        {/* Google Analytics */}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-HK10748610" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-HK10748610');
+          `}
+        </Script>
+
         <SettingsProvider>
           <Favicon />
           <ClientLayout>{children}</ClientLayout>
