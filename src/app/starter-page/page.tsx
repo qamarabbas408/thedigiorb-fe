@@ -1,4 +1,10 @@
 import React from 'react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Starter Page | DigitalOrbit',
+  robots: 'noindex, nofollow',
+};
 
 export default function StarterPagePage() {
   return (

@@ -2,8 +2,9 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Portfolio Details',
+  title: 'Portfolio Details | DigitalOrbit',
   description: 'Explore our portfolio of successful projects and see how we transform ideas into digital reality.',
+  robots: 'noindex, nofollow',
   alternates: {
     canonical: '/portfolio-details',
   },

@@ -8,7 +8,7 @@ import { processImageUrls } from '@/lib/api/utils';
 import { Project, Category } from '@/lib/api/types';
 import PortfolioDetailSkeleton from '@/components/skeletons/PortfolioDetailSkeleton';
 
-export default function PortfolioDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+export default function PortfolioDetailsClient({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const { settings } = useSettings();
   const [project, setProject] = useState<Project | null>(null);
