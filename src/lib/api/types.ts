@@ -107,6 +107,7 @@ export interface Settings {
   twitter_url: string;
   linkedin_url: string;
   instagram_url: string;
+  show_phone: boolean;
 }
 
 export interface ApiResponse<T> {

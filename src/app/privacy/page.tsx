@@ -239,10 +239,12 @@ export default function PrivacyPage() {
                       <span>{settings?.company_address}</span>
                     </div>
                   )}
+                  {settings?.show_phone === true && (
                   <div className="contact-card">
                     <i className="bi bi-telephone"></i>
                     <span>{loading ? 'Loading...' : settings?.company_phone}</span>
                   </div>
+                  )}
                 </div>
               </div>
             </div>

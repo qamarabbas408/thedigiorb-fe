@@ -73,17 +73,9 @@ export default function About() {
                 <a href="#portfolio" className="btn btn-primary-custom">
                   View Our Work <i className="bi bi-arrow-right"></i>
                 </a>
-                <div className="contact-info">
-                  <div className="icon-box">
-                    <i className="bi bi-telephone-fill"></i>
-                  </div>
-                  <div className="text">
-                    <span>Call Us Today</span>
-                    <a href={`tel:${loading ? '' : settings?.company_phone?.replace(/\s/g, '')}`}>
-                      {loading ? 'Loading...' : settings?.company_phone}
-                    </a>
-                  </div>
-                </div>
+                <a href="#contact" className="btn btn-secondary-custom">
+                  Contact Us <i className="bi bi-arrow-right"></i>
+                </a>
               </div>
             </div>
           </div>

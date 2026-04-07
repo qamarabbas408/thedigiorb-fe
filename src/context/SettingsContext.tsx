@@ -17,6 +17,7 @@ interface Settings {
   twitter_url: string;
   linkedin_url: string;
   instagram_url: string;
+  show_phone: boolean;
 }
 
 interface SettingsContextType {
@@ -38,7 +39,16 @@ const defaultSettings: Settings = {
   facebook_url: '#',
   twitter_url: '#',
   linkedin_url: '#',
-  instagram_url: '#'
+  instagram_url: '#',
+  show_phone: true
+};
+
+const parseSettings = (data: any): Settings => {
+  return {
+    ...defaultSettings,
+    ...data,
+    show_phone: data?.show_phone === true || data?.show_phone === '1' || data?.show_phone === 1,
+  };
 };
 
 const SettingsContext = createContext<SettingsContextType>({
@@ -57,7 +67,7 @@ export { useSettingsContext as useSettings };
 export function SettingsProvider({ children }: { children: ReactNode }) {
   const { data, isLoading, error } = useSettings();
   
-  const settings = data || defaultSettings;
+  const settings = data ? parseSettings(data) : defaultSettings;
   
   return (
     <SettingsContext.Provider value={{ 

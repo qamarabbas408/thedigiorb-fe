@@ -77,6 +77,7 @@ export default function Contact() {
                     </div>
                   </div>
 
+                  {settings?.show_phone === true && (
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
                       <Phone className="w-5 h-5" />
@@ -88,6 +89,7 @@ export default function Contact() {
                       </a>
                     </div>
                   </div>
+                  )}
 
                   {settings?.company_address && (
                     <div className="flex items-start gap-4">

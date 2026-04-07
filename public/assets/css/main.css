@@ -1454,6 +1454,31 @@ section,
   transform: translateX(4px);
 }
 
+.about .btn-secondary-custom {
+  background: transparent;
+  color: var(--default-color);
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+  border: 2px solid color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+.about .btn-secondary-custom:hover {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--contrast-color);
+  transform: translateY(-2px);
+}
+
+.about .btn-secondary-custom:hover i {
+  transition: 0.3s;
+  transform: translateX(4px);
+}
+
 .about .contact-info {
   display: flex;
   align-items: center;
