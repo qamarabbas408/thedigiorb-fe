@@ -22,7 +22,7 @@ export default function Hero() {
                 We build innovative digital solutions that help businesses grow. From web development to mobile apps, we bring your vision to life.
               </p>
               <div className="hero-cta" data-aos="fade-up" data-aos-delay="400">
-                <a href="#services" className="cta-button">
+                <a href="/#services" className="cta-button">
                   <span>Explore Services</span>
                   <i className="bi bi-arrow-right"></i>
                 </a>

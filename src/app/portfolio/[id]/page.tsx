@@ -210,7 +210,7 @@ export default function PortfolioDetailsPage({ params }: { params: Promise<{ id:
                   </div>
                 )}
                 
-                <a href="#contact" className="block w-full py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-center rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl">
+                <a href="/#contact" className="block w-full py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-center rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl">
                   <i className="bi bi-chat-dots mr-2" /> Start Similar Project
                 </a>
               </div>
@@ -306,7 +306,7 @@ export default function PortfolioDetailsPage({ params }: { params: Promise<{ id:
                 <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-8 rounded-2xl text-center text-white">
                   <h4 className="text-xl font-bold mb-2">Like This Project?</h4>
                   <p className="text-blue-100 mb-4">Let&apos;s create something amazing together for your business.</p>
-                  <a href="#contact" className="inline-flex items-center justify-center gap-2 w-full py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+                  <a href="/#contact" className="inline-flex items-center justify-center gap-2 w-full py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
                     <i className="bi bi-envelope" /> Get in Touch
                   </a>
                 </div>

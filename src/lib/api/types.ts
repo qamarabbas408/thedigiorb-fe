@@ -9,6 +9,8 @@ export interface Project {
   image?: string;
   gallery?: string[];
   featured?: boolean;
+  display_order?: number;
+  is_active?: boolean;
   client?: string;
   url?: string;
   status?: string;

@@ -4,8 +4,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePublishedProjects, useCategories } from '@/hooks';
 
+const PROJECTS_LIMIT = 9;
+
 export default function Portfolio() {
-  const { data: projects, isLoading } = usePublishedProjects();
+  const { data: projects, isLoading } = usePublishedProjects(PROJECTS_LIMIT);
   const { data: categories } = useCategories();
   const [activeFilter, setActiveFilter] = useState('*');
 
@@ -77,9 +79,9 @@ export default function Portfolio() {
                   <i className="bi bi-briefcase"></i>
                   <h3>No projects yet</h3>
                   <p>We&apos;re working on exciting new projects. Check back soon!</p>
-                  <a href="#contact" className="btn btn-primary">
-                    <i className="bi bi-envelope"></i> Get in Touch
-                  </a>
+                    <a href="/#contact" className="btn btn-primary">
+                      <i className="bi bi-envelope"></i> Get in Touch
+                    </a>
                 </div>
               </div>
             ) : filteredProjects.length === 0 && activeFilter !== '*' ? (
@@ -154,7 +156,15 @@ export default function Portfolio() {
             )}
           </div>
 
-          {projects && projects.length > 0 && (
+            {projects && projects.length > 0 && filteredProjects.length > 0 && (
+              <div className="text-center mt-8">
+                <Link href="/portfolio" className="btn btn-primary-custom">
+                  View All Projects <i className="bi bi-arrow-right"></i>
+                </Link>
+              </div>
+            )}
+
+            {projects && projects.length > 0 && (
             <div className="cta-section" data-aos="zoom-in" data-aos-delay="300">
               <div className="cta-content">
                 <span className="cta-label">
@@ -163,11 +173,11 @@ export default function Portfolio() {
                 <h3>Let&apos;s Create Something Amazing Together</h3>
                 <p>Have a project in mind? We&apos;d love to hear about it and bring your vision to life.</p>
                 <div className="cta-buttons">
-                  <a href="#contact" className="btn-cta-primary">
-                    Start Your Project <i className="bi bi-arrow-right"></i>
-                  </a>
-                  <a href="#services" className="btn-cta-secondary">
-                    <i className="bi bi-play-circle"></i> Explore Services
+                <a href="/#contact" className="btn-cta-primary">
+                  Start Your Project <i className="bi bi-arrow-right"></i>
+                </a>
+                <a href="/#services" className="btn-cta-secondary">
+                  <i className="bi bi-play-circle"></i> Explore Services
                   </a>
                 </div>
               </div>

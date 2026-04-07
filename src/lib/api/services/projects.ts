@@ -9,10 +9,29 @@ export const projectsApi = {
     return Array.isArray(data) ? data.map((item: Project) => processImageUrls(item, ['image', 'gallery'])) : data;
   },
 
-  getPublished: async (): Promise<Project[]> => {
-    const response = await apiClient.get('/portfolio/projects?status=published');
+  getPublished: async (limit?: number, offset?: number): Promise<Project[]> => {
+    let url = '/portfolio/projects?status=published';
+    if (limit) {
+      url += `&limit=${limit}`;
+    }
+    if (offset !== undefined) {
+      url += `&offset=${offset}`;
+    }
+    const response = await apiClient.get(url);
     const data = response.data.data || response.data;
     return Array.isArray(data) ? data.map((item: Project) => processImageUrls(item, ['image', 'gallery'])) : data;
+  },
+
+  getPublishedWithTotal: async (limit: number = 12, offset: number = 0, categoryId?: string): Promise<{ projects: Project[]; total: number }> => {
+    let url = `/portfolio/projects?status=published&limit=${limit}&offset=${offset}`;
+    if (categoryId) {
+      url += `&categoryId=${categoryId}`;
+    }
+    const response = await apiClient.get(url);
+    const data = response.data.data || response.data;
+    const projects = Array.isArray(data) ? data.map((item: Project) => processImageUrls(item, ['image', 'gallery'])) : [];
+    const total = response.data.total || projects.length;
+    return { projects, total };
   },
 
   getByCategory: async (categoryId: string): Promise<Project[]> => {

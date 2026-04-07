@@ -114,7 +114,7 @@ export default function Testimonials() {
                 </p>
                 
                 <a 
-                  href="#contact" 
+                  href="/#contact" 
                   className=" text-light inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-xl font-semibold transition-colors"
                 >
                   Work With Us <i className="bi bi-arrow-right" />

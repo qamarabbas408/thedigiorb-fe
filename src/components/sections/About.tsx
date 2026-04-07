@@ -70,10 +70,10 @@ export default function About() {
                   </div>
                 )}
               <div className="action-buttons">
-                <a href="#portfolio" className="btn btn-primary-custom">
+                <a href="/#portfolio" className="btn btn-primary-custom">
                   View Our Work <i className="bi bi-arrow-right"></i>
                 </a>
-                <a href="#contact" className="btn btn-secondary-custom">
+                <a href="/#contact" className="btn btn-secondary-custom">
                   Contact Us <i className="bi bi-arrow-right"></i>
                 </a>
               </div>

@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { projectsApi } from '@/lib/api';
+import { Project } from '@/lib/api/types';
 
 export const useProjects = () => {
   return useQuery({
@@ -8,9 +9,23 @@ export const useProjects = () => {
   });
 };
 
-export const usePublishedProjects = () => {
+export const usePublishedProjects = (limit?: number, offset?: number) => {
   return useQuery({
-    queryKey: ['projects', 'published'],
+    queryKey: ['projects', 'published', limit, offset],
+    queryFn: () => projectsApi.getPublished(limit, offset),
+  });
+};
+
+export const usePublishedProjectsWithTotal = (limit: number = 12, offset: number = 0, categoryId?: string) => {
+  return useQuery<{ projects: Project[]; total: number }>({
+    queryKey: ['projects', 'published', 'paginated', limit, offset, categoryId],
+    queryFn: () => projectsApi.getPublishedWithTotal(limit, offset, categoryId),
+  });
+};
+
+export const useAllPublishedProjects = () => {
+  return useQuery({
+    queryKey: ['projects', 'published', 'all'],
     queryFn: () => projectsApi.getPublished(),
   });
 };

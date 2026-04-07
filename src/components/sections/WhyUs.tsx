@@ -57,8 +57,8 @@ export default function WhyUs() {
               </div>
 
               <div className="action-buttons">
-                <a href="#contact" className="btn-main">Get Started Today</a>
-                <a href="#portfolio" className="btn-outline">Explore Portfolio</a>
+                <a href="/#contact" className="btn-main">Get Started Today</a>
+                <a href="/#portfolio" className="btn-outline">Explore Portfolio</a>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@ export default function WhyUs() {
                 <div className="feature-content">
                   <h4>Rapid Implementation</h4>
                   <p>We deliver projects on time without compromising quality. Our agile process ensures quick iterations and fast turnaround without sacrificing excellence.</p>
-                  <a href="#services" className="feature-link">Discover How <i className="bi bi-chevron-right"></i></a>
+                  <a href="/#services" className="feature-link">Discover How <i className="bi bi-chevron-right"></i></a>
                 </div>
               </div>
 
@@ -84,7 +84,7 @@ export default function WhyUs() {
                 <div className="feature-content">
                   <h4>Analytics-First Approach</h4>
                   <p>Every decision we make is backed by data. We track metrics, analyze results, and continuously optimize to ensure maximum ROI for your investment.</p>
-                  <a href="#portfolio" className="feature-link">Discover How <i className="bi bi-chevron-right"></i></a>
+                  <a href="/#portfolio" className="feature-link">Discover How <i className="bi bi-chevron-right"></i></a>
                 </div>
               </div>
 
@@ -95,7 +95,7 @@ export default function WhyUs() {
                 <div className="feature-content">
                   <h4>Award-Winning Team</h4>
                   <p>Our team of certified experts brings diverse skills and proven experience. We're passionate about technology and committed to exceeding expectations.</p>
-                  <a href="#team" className="feature-link">Discover How <i className="bi bi-chevron-right"></i></a>
+                  <a href="/#team" className="feature-link">Discover How <i className="bi bi-chevron-right"></i></a>
                 </div>
               </div>
             </div>
