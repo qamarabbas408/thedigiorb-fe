@@ -26,10 +26,7 @@ export default function Hero() {
                   <span>Explore Services</span>
                   <i className="bi bi-arrow-right"></i>
                 </a>
-                <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" className="glightbox cta-link" data-gallery="hero-video">
-                  <i className="bi bi-play-circle"></i>
-                  <span>Watch Video</span>
-                </a>
+              
               </div>
             </div>
           </div>
