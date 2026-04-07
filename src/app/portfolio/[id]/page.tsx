@@ -379,9 +379,8 @@ export default function PortfolioDetailsPage({ params }: { params: Promise<{ id:
           )}
 
           <div className="mt-16 pt-8 border-t border-slate-200 flex justify-center">
-            <Link href="/#portfolio" className="flex items-center gap-3 px-6 py-3 bg-slate-100 text-slate-700 rounded-xl font-semibold hover:bg-slate-200 transition-colors">
-              <i className="bi bi-grid-3x3-gap text-xl" />
-              View All Projects
+            <Link href="/portfolio" className="btn-cta-primary">
+              <i className="bi bi-grid-3x3-gap"></i> View All Projects
             </Link>
           </div>
         </div>

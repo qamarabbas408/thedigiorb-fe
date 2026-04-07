@@ -164,7 +164,7 @@ export default function Portfolio() {
 
             {projects && projects.length > 0 && filteredProjects.length > 0 && (
               <div className="text-center mt-8">
-                <Link href="/portfolio" className="btn btn-primary-custom">
+                <Link href="/portfolio" className="btn-cta-primary">
                   View All Projects <i className="bi bi-arrow-right"></i>
                 </Link>
               </div>
