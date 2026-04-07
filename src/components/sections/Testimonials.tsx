@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { usePublishedTestimonials } from '@/hooks';
+import TestimonialsSkeleton from '@/components/skeletons/TestimonialsSkeleton';
 
 export default function Testimonials() {
   const { data: testimonials, isLoading } = usePublishedTestimonials();
@@ -50,8 +51,9 @@ export default function Testimonials() {
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Testimonials</h2>
-            <p className="text-slate-500">Loading testimonials...</p>
+            <p className="text-slate-500">What our clients say about us</p>
           </div>
+          <TestimonialsSkeleton />
         </div>
       </section>
     );

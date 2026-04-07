@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePublishedProjects, useCategories } from '@/hooks';
+import PortfolioSkeleton from '@/components/skeletons/PortfolioSkeleton';
 
 const PROJECTS_LIMIT = 9;
 
@@ -35,7 +36,12 @@ export default function Portfolio() {
       <section id="portfolio" className="portfolio section">
         <div className="container section-title" data-aos="fade-up">
           <h2>Portfolio</h2>
-          <p>Loading projects...</p>
+          <p>Our Work & Projects</p>
+        </div>
+        <div className="container" data-aos="fade-up" data-aos-delay="100">
+          <div className="row g-4">
+            <PortfolioSkeleton />
+          </div>
         </div>
       </section>
     );

@@ -1,6 +1,7 @@
 'use client';
 
 import { useActiveTeam, useStatsBySection } from '@/hooks';
+import TeamSkeleton from '@/components/skeletons/TeamSkeleton';
 
 export default function Team() {
   const { data: members, isLoading } = useActiveTeam();
@@ -33,8 +34,8 @@ export default function Team() {
         </div>
 
         {isLoading ? (
-          <div className="flex justify-center py-12">
-            <div className="w-10 h-10 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin" />
+          <div className="container">
+            <TeamSkeleton />
           </div>
         ) : !members || members.length === 0 ? (
           <div className="text-center py-12">
