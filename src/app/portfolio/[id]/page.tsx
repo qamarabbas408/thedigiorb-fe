@@ -6,6 +6,7 @@ import { useSettings } from '@/context/SettingsContext';
 import { projectsApi, categoriesApi } from '@/lib/api';
 import { processImageUrls } from '@/lib/api/utils';
 import { Project, Category } from '@/lib/api/types';
+import PortfolioDetailSkeleton from '@/components/skeletons/PortfolioDetailSkeleton';
 
 export default function PortfolioDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -50,11 +51,7 @@ export default function PortfolioDetailsPage({ params }: { params: Promise<{ id:
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin" />
-      </div>
-    );
+    return <PortfolioDetailSkeleton />;
   }
 
   if (error || !project) {

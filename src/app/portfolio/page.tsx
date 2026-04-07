@@ -4,6 +4,7 @@ import { Suspense, useMemo } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { usePublishedProjectsWithTotal, useCategories } from '@/hooks';
+import PortfolioSkeleton from '@/components/skeletons/PortfolioSkeleton';
 
 const PROJECTS_PER_PAGE = 12;
 
@@ -58,9 +59,10 @@ function PortfolioContent() {
             <h2>Portfolio</h2>
             <p>Our Work & Projects</p>
           </div>
-          <div className="text-center py-12">
-            <div className="inline-block w-10 h-10 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
-            <p className="mt-4 text-gray-600">Loading projects...</p>
+          <div className="portfolio" data-aos="fade-up" data-aos-delay="100">
+            <div className="portfolio-grid">
+              <PortfolioSkeleton />
+            </div>
           </div>
         </div>
       </div>
