@@ -128,7 +128,7 @@ export default function PortfolioDetailsClient({ params }: { params: Promise<{ i
                       ))
                     ) : (
                       <div className="swiper-slide">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop" alt={project.title} className="img-fluid w-full h-[450px] object-cover" />
+                        <img src="/assets/img/placeholder.svg" alt="No image available" className="img-fluid w-full h-[450px] object-cover" />
                       </div>
                     )}
                   </div>
