@@ -10,11 +10,20 @@ export default function Header() {
     <header id="header" className="header d-flex align-items-center sticky-top">
       <div className="container position-relative d-flex align-items-center justify-content-between">
         <Link href="/" className="logo d-flex align-items-center me-auto me-xl-0">
-          {loading ? (
+         <img 
+              src={'/assets/img/textual-logo.png'} 
+              alt={settings?.company_name || 'Logo'} 
+              style={{
+                height: "45px",
+                maxHeight: "45px",
+              }}
+            />
+          {/* {
+          loading ? (
             <h1 className="sitename">...</h1>
           ) : settings?.logo_type === 'image' && settings?.logo_image ? (
             <img 
-              src={settings.logo_image} 
+              src={'/assets/img/textual-logo.png'} 
               alt={settings?.company_name || 'Logo'} 
               style={{
                 height: "50px",
@@ -23,7 +32,7 @@ export default function Header() {
             />
           ) : (
             <h1 className="sitename">{settings?.company_name}</h1>
-          )}
+          )} */}
         </Link>
 
         <nav id="navmenu" className="navmenu">

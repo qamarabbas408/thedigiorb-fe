@@ -191,6 +191,11 @@ h6 {
     order: 1;
   }
 
+  .header .logo img {
+    height: 35px !important;
+    max-height: 35px !important;
+  }
+
   .header .btn-getstarted {
     order: 2;
     margin: 0 15px 0 0;
@@ -199,6 +204,37 @@ h6 {
 
   .header .navmenu {
     order: 3;
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    padding: 10px 0;
+  }
+
+  .header .container {
+    padding: 0 12px;
+  }
+
+  .header .logo img {
+    height: 28px !important;
+    max-height: 28px !important;
+  }
+
+  .header .btn-getstarted {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+
+  .mobile-nav-toggle {
+    font-size: 24px;
+    margin-right: 5px;
+  }
+}
+
+@media (max-width: 400px) {
+  .header .btn-getstarted {
+    display: none;
   }
 }
 
