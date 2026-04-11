@@ -1,6 +1,7 @@
 import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
+import pngToIco from 'png-to-ico';
 
 const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <defs>
@@ -14,6 +15,7 @@ const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" 
 </svg>`;
 
 const imgDir = path.join(process.cwd(), 'public', 'assets', 'img');
+const publicDir = path.join(process.cwd(), 'public');
 
 const sizes = [
   { name: 'favicon-16x16.png', size: 16 },
@@ -32,6 +34,13 @@ async function generateFavicons() {
       .toFile(path.join(imgDir, name));
     console.log(`Created ${name} (${size}x${size})`);
   }
+  
+  // Generate favicon.ico
+  console.log('Generating favicon.ico...');
+  const pngPath = path.join(imgDir, 'favicon-32x32.png');
+  const icoBuffer = await pngToIco(pngPath);
+  fs.writeFileSync(path.join(publicDir, 'favicon.ico'), icoBuffer);
+  console.log('Created favicon.ico');
   
   console.log('Favicon PNGs generated successfully!');
 }
