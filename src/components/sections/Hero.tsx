@@ -30,10 +30,10 @@ export default function Hero() {
               </div>
             </div>
           </div>
-          <div className="col-lg-6" data-aos="fade-left" data-aos-delay="300">
-            <div className="stats-grid">
-              {!isLoading && stats && stats.length > 0 ? (
-                stats.sort((a, b) => a.display_order - b.display_order).map((stat, index) => (
+          {!isLoading && stats && stats.length > 0 && (
+            <div className="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+              <div className="stats-grid">
+                {stats.sort((a, b) => a.display_order - b.display_order).map((stat, index) => (
                   <div 
                     key={stat.id} 
                     className={`stat-card ${index === 0 ? 'stat-card-primary' : index === 3 ? 'stat-card-accent' : ''}`}
@@ -48,49 +48,10 @@ export default function Hero() {
                       <span className="stat-title">{stat.label}</span>
                     </div>
                   </div>
-                ))
-              ) : (
-                <>
-                  <div className="stat-card stat-card-primary" data-aos="zoom-in" data-aos-delay="350">
-                    <div className="stat-icon-wrap">
-                      <i className="bi bi-rocket-takeoff"></i>
-                    </div>
-                    <div className="stat-info">
-                      <span className="stat-value">150+</span>
-                      <span className="stat-title">Projects Launched</span>
-                    </div>
-                  </div>
-                  <div className="stat-card" data-aos="zoom-in" data-aos-delay="400">
-                    <div className="stat-icon-wrap">
-                      <i className="bi bi-heart"></i>
-                    </div>
-                    <div className="stat-info">
-                      <span className="stat-value">98%</span>
-                      <span className="stat-title">Client Satisfaction</span>
-                    </div>
-                  </div>
-                  <div className="stat-card" data-aos="zoom-in" data-aos-delay="450">
-                    <div className="stat-icon-wrap">
-                      <i className="bi bi-lightbulb"></i>
-                    </div>
-                    <div className="stat-info">
-                      <span className="stat-value">12+</span>
-                      <span className="stat-title">Years Experience</span>
-                    </div>
-                  </div>
-                  <div className="stat-card stat-card-accent" data-aos="zoom-in" data-aos-delay="500">
-                    <div className="stat-icon-wrap">
-                      <i className="bi bi-briefcase"></i>
-                    </div>
-                    <div className="stat-info">
-                      <span className="stat-value">40+</span>
-                      <span className="stat-title">Team Experts</span>
-                    </div>
-                  </div>
-                </>
-              )}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
