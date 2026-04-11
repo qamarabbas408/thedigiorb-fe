@@ -9,14 +9,14 @@ import { QueryProvider } from "@/components/providers/QueryProvider";
 export const metadata: Metadata = {
   metadataBase: new URL('https://thedigiorb.com'),
   title: {
-    default: "DigitalOrbit - Crafting Exceptional Digital Experiences",
-    template: "%s | DigitalOrbit",
+    default: "TheDiGiorb - Crafting Exceptional Digital Experiences",
+    template: "%s | TheDiGiorb",
   },
-  description: "DigitalOrbit - Building innovative web and mobile solutions for businesses worldwide. Expert web development, mobile apps, and digital transformation services.",
-  keywords: ["digital agency", "web development", "mobile app development", "UI/UX design", "software solutions", "digital transformation", "React development", "Next.js development"],
-  authors: [{ name: "DigitalOrbit" }],
-  creator: "DigitalOrbit",
-  publisher: "DigitalOrbit",
+  description: "TheDiGiorb - Professional IT solutions including web development, mobile apps, AI/LLMs, blockchain, and custom software. Serving national and international clients with 5+ years of experience.",
+  keywords: ["web development", "mobile app development", "custom software", "AI solutions", "LLMs", "blockchain", "IT support", "digital agency", "software development", "TheDiGiorb"],
+  authors: [{ name: "TheDiGiorb" }],
+  creator: "TheDiGiorb",
+  publisher: "TheDiGiorb",
   formatDetection: {
     email: false,
     address: false,
@@ -26,24 +26,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://thedigiorb.com",
-    siteName: "DigitalOrbit",
-    title: "DigitalOrbit - Crafting Exceptional Digital Experiences",
-    description: "Building innovative web and mobile solutions for businesses worldwide. Expert web development, mobile apps, and digital transformation services.",
+    siteName: "TheDiGiorb",
+    title: "TheDiGiorb - Crafting Exceptional Digital Experiences",
+    description: "Professional IT solutions including web development, mobile apps, AI/LLMs, blockchain, and custom software. 5+ years of experience serving national and international clients.",
     images: [
       {
         url: "/assets/img/og-image.png",
         width: 1200,
         height: 630,
-        alt: "DigitalOrbit - Digital Solutions",
+        alt: "TheDiGiorb - Crafting Exceptional Digital Experiences",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DigitalOrbit - Crafting Exceptional Digital Experiences",
-    description: "Building innovative web and mobile solutions for businesses worldwide.",
+    title: "TheDiGiorb - Crafting Exceptional Digital Experiences",
+    description: "Professional IT solutions including web development, mobile apps, AI/LLMs, blockchain, and custom software.",
     images: ["/assets/img/og-image.png"],
-    creator: "@digitalorbits",
+    creator: "@TheDiGiorb",
   },
   robots: {
     index: true,
@@ -59,6 +59,16 @@ export const metadata: Metadata = {
   verification: {
     google: "KmPsUCyuoXhJDuuCNdBicXb0YHsSVMetTyxpPhwSN1M",
   },
+  icons: {
+    icon: [
+      { url: '/assets/img/favicon.svg', type: 'image/svg+xml' },
+      { url: '/assets/img/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/assets/img/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/assets/img/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -71,7 +81,9 @@ export default function RootLayout({
       <body>
         <QueryProvider>
         {/* Favicons */}
-        <link href="/assets/img/favicon.png" rel="icon" />
+        <link href="/assets/img/favicon.svg" rel="icon" type="image/svg+xml" />
+        <link href="/assets/img/favicon-32x32.png" rel="icon" sizes="32x32" />
+        <link href="/assets/img/favicon-16x16.png" rel="icon" sizes="16x16" />
         <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
         {/* Fonts */}

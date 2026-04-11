@@ -12,7 +12,7 @@ export default function Header() {
         <Link href="/" className="logo d-flex align-items-center me-auto me-xl-0">
          <img 
               src={'/assets/img/textual-logo.png'} 
-              alt={settings?.company_name || 'Logo'} 
+              alt={'TheDiGiorb'} 
               style={{
                 height: "45px",
                 maxHeight: "45px",
