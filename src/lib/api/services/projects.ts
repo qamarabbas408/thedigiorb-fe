@@ -9,13 +9,16 @@ export const projectsApi = {
     return Array.isArray(data) ? data.map((item: Project) => processImageUrls(item, ['image', 'gallery'])) : data;
   },
 
-  getPublished: async (limit?: number, offset?: number): Promise<Project[]> => {
+  getPublished: async (limit?: number, offset?: number, categoryId?: string): Promise<Project[]> => {
     let url = '/portfolio/projects?status=published';
     if (limit) {
       url += `&limit=${limit}`;
     }
     if (offset !== undefined) {
       url += `&offset=${offset}`;
+    }
+    if (categoryId) {
+      url += `&categoryId=${categoryId}`;
     }
     const response = await apiClient.get(url);
     const data = response.data.data || response.data;

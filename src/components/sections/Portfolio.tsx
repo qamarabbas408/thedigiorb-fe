@@ -8,9 +8,11 @@ import PortfolioSkeleton from '@/components/skeletons/PortfolioSkeleton';
 const PROJECTS_LIMIT = 9;
 
 export default function Portfolio() {
-  const { data: projects, isLoading } = usePublishedProjects(PROJECTS_LIMIT);
   const { data: categories } = useCategories();
   const [activeFilter, setActiveFilter] = useState('*');
+
+  const activeCategoryId = activeFilter === '*' ? undefined : categories?.find(c => c.filter_class === activeFilter)?.id;
+  const { data: projects, isLoading, isFetching } = usePublishedProjects(PROJECTS_LIMIT, undefined, activeCategoryId);
 
   const getCategoryName = (categoryId: string) => {
     const category = categories?.find(c => c.id === categoryId);
@@ -26,12 +28,9 @@ export default function Portfolio() {
     setActiveFilter(filterClass);
   };
 
-  const filteredProjects = projects?.filter(project => {
-    if (activeFilter === '*') return true;
-    return getFilterClass(project.category_id) === activeFilter;
-  }) || [];
+  const filteredProjects = projects || [];
 
-  if (isLoading) {
+  if (isLoading && !projects) {
     return (
       <section id="portfolio" className="portfolio section">
         <div className="container section-title" data-aos="fade-up">
@@ -54,6 +53,9 @@ export default function Portfolio() {
         <p>Our Work & Projects</p>
       </div>
 
+      {isFetching && projects && (
+        <div className="portfolio-loading-bar" />
+      )}
       <div className="container" data-aos="fade-up" data-aos-delay="100">
         <div className="portfolio-container" data-default-filter="*" data-layout="fitRows" data-sort="original-order">
           <div className="filters-wrapper" data-aos="fade-up" data-aos-delay="100">
@@ -63,6 +65,7 @@ export default function Portfolio() {
                 className={activeFilter === '*' ? 'filter-active' : ''}
                 onClick={() => handleFilterClick('*')}
               >
+                <i className="bi bi-grid-3x3-gap-fill"></i>
                 All Projects
               </li>
               {categories?.map((category) => (
@@ -72,6 +75,7 @@ export default function Portfolio() {
                   className={activeFilter === category.filter_class ? 'filter-active' : ''}
                   onClick={() => handleFilterClick(category.filter_class)}
                 >
+                  <i className={`bi ${category.icon}`}></i>
                   {category.name}
                 </li>
               ))}
@@ -85,8 +89,8 @@ export default function Portfolio() {
                   <i className="bi bi-briefcase"></i>
                   <h3>No projects yet</h3>
                   <p>We&apos;re working on exciting new projects. Check back soon!</p>
-                    <a href="/#contact" className="btn btn-primary">
-                      <i className="bi bi-envelope"></i> Get in Touch
+                    <a href="/#contact" className="empty-portfolio-btn">
+                      Get in Touch
                     </a>
                 </div>
               </div>
@@ -98,7 +102,7 @@ export default function Portfolio() {
                   <p>We don&apos;t have any projects in this category yet. Check back soon!</p>
                   <button 
                     onClick={() => handleFilterClick('*')} 
-                    className="btn btn-primary mt-3 p-3"
+                    className="empty-portfolio-btn"
                   >
                     View All Projects
                   </button>
@@ -110,28 +114,33 @@ export default function Portfolio() {
                   key={project.id} 
                   className={`col-lg-4 col-md-6 portfolio-item ${getFilterClass(project.category_id)}`}
                 >
-                  <div className={`project-card ${project.featured ? 'featured' : ''}`}>
+                    <div className={`project-card ${project.featured ? 'featured' : ''}`}>
                     <Link href={`/portfolio/${project.id}`} className="image-wrapper">
-                      <img 
-                        src={project.image || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop'} 
-                        alt={project.title} 
-                        className="img-fluid" 
-                        loading="lazy"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop';
-                        }}
-                      />
+                      <div className="image-blur-load">
+                        <img 
+                          src={project.image || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop'} 
+                          alt={project.title} 
+                          className="img-fluid" 
+                          loading="lazy"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop';
+                          }}
+                        />
+                      </div>
                       <div className="hover-overlay">
                         <div className="overlay-actions">
-                          <span className="action-btn">
+                          <span className="action-btn" title="View Project">
                             <i className="bi bi-eye"></i>
                           </span>
-                          <span className="action-btn">
+                          <span className="action-btn" title="Open Project">
                             <i className="bi bi-arrow-right-short"></i>
                           </span>
                         </div>
                       </div>
-                      <span className="category-badge">{getCategoryName(project.category_id)}</span>
+                      <span className="category-badge">
+                        <i className={`bi ${categories?.find(c => c.id === project.category_id)?.icon || 'bi-folder'}`}></i>
+                        {getCategoryName(project.category_id)}
+                      </span>
                       {project.featured && (
                         <span className="featured-badge">
                           <i className="bi bi-star-fill"></i> Featured
