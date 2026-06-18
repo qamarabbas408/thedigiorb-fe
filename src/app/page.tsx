@@ -18,10 +18,10 @@ export const metadata: Metadata = {
     siteName: 'TheDigiOrb',
     images: [
       {
-        url: '/assets/img/og-image.png',
+        url: 'https://thedigiorb.com/assets/img/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'TheDigiOrb - Digital Solutions',
+        alt: 'TheDiGiorb - Digital Solutions',
       },
     ],
     locale: 'en_US',
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TheDigiOrb - Crafting Exceptional Digital Experiences',
+    title: 'TheDiGiorb - Crafting Exceptional Digital Experiences',
     description: 'Building innovative web and mobile solutions for businesses worldwide.',
-    images: ['/assets/img/og-image.png'],
+    images: ['https://thedigiorb.com/assets/img/og-image.png'],
   },
   alternates: {
     canonical: 'https://thedigiorb.com',

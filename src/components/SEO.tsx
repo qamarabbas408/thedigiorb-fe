@@ -13,7 +13,7 @@ interface SEOProps {
 }
 
 const SITE_URL = 'https://thedigiorb.com';
-const DEFAULT_IMAGE = '/assets/img/og-image.png';
+const DEFAULT_IMAGE = 'https://thedigiorb.com/assets/img/og-image.png';
 
 export default function SEO({ 
   title, 

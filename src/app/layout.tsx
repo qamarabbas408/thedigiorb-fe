@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: "Professional IT solutions including web development, mobile apps, AI/LLMs, blockchain, and custom software. 5+ years of experience serving national and international clients.",
     images: [
       {
-        url: "/assets/img/og-image.png",
+        url: "https://thedigiorb.com/assets/img/og-image.png",
         width: 1200,
         height: 630,
         alt: "TheDiGiorb - Crafting Exceptional Digital Experiences",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "TheDiGiorb - Crafting Exceptional Digital Experiences",
     description: "Professional IT solutions including web development, mobile apps, AI/LLMs, blockchain, and custom software.",
-    images: ["/assets/img/og-image.png"],
+    images: ["https://thedigiorb.com/assets/img/og-image.png"],
     creator: "@TheDiGiorb",
   },
   robots: {
