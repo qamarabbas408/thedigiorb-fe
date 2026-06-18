@@ -1,4 +1,4 @@
-# DigitalOrbit - Portfolio Website Features
+# TheDigiOrb - Portfolio Website Features
 
 ## Implemented Features
 

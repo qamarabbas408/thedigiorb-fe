@@ -61,13 +61,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/assets/img/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico' },
       { url: '/assets/img/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/assets/img/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
     ],
-    apple: [
-      { url: '/assets/img/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
+    apple: '/assets/img/apple-touch-icon.png',
   },
 };
 
@@ -80,10 +78,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <QueryProvider>
-        {/* Favicons */}
-        <link href="/assets/img/favicon.svg" rel="icon" type="image/svg+xml" />
-        <link href="/assets/img/favicon-32x32.png" rel="icon" sizes="32x32" />
-        <link href="/assets/img/favicon-16x16.png" rel="icon" sizes="16x16" />
+        {/* Favicon */}
+        <link href="/favicon.ico" rel="icon" />
+        <link href="/assets/img/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+        <link href="/assets/img/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
         <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
         {/* Fonts */}

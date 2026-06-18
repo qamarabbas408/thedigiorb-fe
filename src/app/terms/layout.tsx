@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description: 'Review our terms and conditions governing your use of DigitalOrbit platform and services.',
+  description: 'Review our terms and conditions governing your use of TheDigiOrb platform and services.',
   alternates: {
     canonical: '/terms',
   },

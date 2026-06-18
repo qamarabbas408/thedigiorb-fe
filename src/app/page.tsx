@@ -9,19 +9,19 @@ import Team from '@/components/sections/Team';
 import Contact from '@/components/sections/Contact';
 
 export const metadata: Metadata = {
-  title: 'DigitalOrbit - Crafting Exceptional Digital Experiences',
+  title: 'TheDigiOrb - Crafting Exceptional Digital Experiences',
   description: 'Building innovative web and mobile solutions for businesses worldwide. Expert web development, mobile apps, and digital transformation services.',
   openGraph: {
-    title: 'DigitalOrbit - Crafting Exceptional Digital Experiences',
+    title: 'TheDigiOrb - Crafting Exceptional Digital Experiences',
     description: 'Building innovative web and mobile solutions for businesses worldwide. Expert web development, mobile apps, and digital transformation services.',
     url: 'https://thedigiorb.com',
-    siteName: 'DigitalOrbit',
+    siteName: 'TheDigiOrb',
     images: [
       {
         url: '/assets/img/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'DigitalOrbit - Digital Solutions',
+        alt: 'TheDigiOrb - Digital Solutions',
       },
     ],
     locale: 'en_US',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DigitalOrbit - Crafting Exceptional Digital Experiences',
+    title: 'TheDigiOrb - Crafting Exceptional Digital Experiences',
     description: 'Building innovative web and mobile solutions for businesses worldwide.',
     images: ['/assets/img/og-image.png'],
   },

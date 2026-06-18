@@ -262,7 +262,7 @@ export default function PortfolioDetailsClient({ params }: { params: Promise<{ i
                   <div className="relative">
                     <i className="bi bi-quote text-6xl text-blue-500/30 absolute -top-2 left-0" />
                     <p className="text-lg italic leading-relaxed pl-10 mb-6">
-                      Working with {settings?.company_name || 'DigitalOrbit'} was an excellent experience. They delivered beyond our expectations and the results have been outstanding.
+                      Working with {settings?.company_name || 'TheDigiOrb'} was an excellent experience. They delivered beyond our expectations and the results have been outstanding.
                     </p>
                     <div className="flex items-center gap-4 pl-10">
                       <div className="w-14 h-14 bg-blue-500 rounded-full flex items-center justify-center text-xl font-bold">

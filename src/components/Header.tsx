@@ -11,11 +11,11 @@ export default function Header() {
       <div className="container position-relative d-flex align-items-center justify-content-between">
         <Link href="/" className="logo d-flex align-items-center me-auto me-xl-0">
          <img 
-              src={'/assets/img/textual-logo.png'} 
+              src={'/assets/img/nav-logo.png'} 
               alt={'TheDiGiorb'} 
               style={{
-                height: "45px",
-                maxHeight: "45px",
+                height: "34px",
+                maxHeight: "34px",
               }}
             />
           {/* {
@@ -23,7 +23,7 @@ export default function Header() {
             <h1 className="sitename">...</h1>
           ) : settings?.logo_type === 'image' && settings?.logo_image ? (
             <img 
-              src={'/assets/img/textual-logo.png'} 
+              src={'/assets/img/nav-logo.png'} 
               alt={settings?.company_name || 'Logo'} 
               style={{
                 height: "50px",
@@ -97,15 +97,12 @@ export default function Header() {
                 </li>
               </ul>
             </li> */}
-            <li>
-              <Link href="/#contact">Contact</Link>
-            </li>
           </ul>
           <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
-        <a className="btn-getstarted" href="/#about">
-          Get Started
+        <a className="btn-getstarted" href="/#contact">
+          Contact
         </a>
       </div>
     </header>

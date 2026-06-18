@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Service Details | DigitalOrbit',
+  title: 'Service Details | TheDigiOrb',
   description: 'Learn more about our expert services and how we can help transform your business with innovative digital solutions.',
   robots: 'noindex, nofollow',
   alternates: {

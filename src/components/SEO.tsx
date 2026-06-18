@@ -26,7 +26,7 @@ export default function SEO({
 }: SEOProps) {
   const { settings } = useSettings();
   
-  const siteName = settings?.company_name || 'DigitalOrbit';
+  const siteName = settings?.company_name || 'TheDigiOrb';
   const defaultDescription = settings?.company_description || 'Building innovative web and mobile solutions';
   
   const pageTitle = title ? `${title} | ${siteName}` : siteName;
@@ -39,19 +39,19 @@ export default function SEO({
 
 export function generateMetadata(overrides?: Partial<SEOProps>): Record<string, string> {
   const base: Record<string, string> = {
-    'title': overrides?.title || 'DigitalOrbit',
+    'title': overrides?.title || 'TheDigiOrb',
     'description': overrides?.description || 'Building innovative web and mobile solutions',
     'keywords': 'web development, mobile apps, digital solutions, software development, UI/UX design',
-    'author': 'DigitalOrbit',
+    'author': 'TheDigiOrb',
     'robots': 'index, follow',
-    'og:title': overrides?.title || 'DigitalOrbit',
+    'og:title': overrides?.title || 'TheDigiOrb',
     'og:description': overrides?.description || 'Building innovative web and mobile solutions',
     'og:type': overrides?.type || 'website',
     'og:url': overrides?.url || SITE_URL,
     'og:image': overrides?.image || DEFAULT_IMAGE,
-    'og:site_name': 'DigitalOrbit',
+    'og:site_name': 'TheDigiOrb',
     'twitter:card': 'summary_large_image',
-    'twitter:title': overrides?.title || 'DigitalOrbit',
+    'twitter:title': overrides?.title || 'TheDigiOrb',
     'twitter:description': overrides?.description || 'Building innovative web and mobile solutions',
     'twitter:image': overrides?.image || DEFAULT_IMAGE,
     'twitter:creator': '@digitalorbits',
