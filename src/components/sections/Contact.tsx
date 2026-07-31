@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 
 export default function Contact() {
-  const { settings, loading } = useSettings();
+  const { settings } = useSettings();
   const { data: stats } = useStatsBySection('contact');
   const submitContact = useSubmitContact();
   const [formData, setFormData] = useState({
@@ -71,8 +71,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-sm text-slate-400 mb-1">Email Us</p>
-                      <a href={`mailto:${loading ? '' : settings?.company_email}`} className="text-white hover:text-blue-300 transition-colors">
-                        {loading ? 'Loading...' : settings?.company_email}
+                      <a href={`mailto:${settings?.company_email || ''}`} className="text-white hover:text-blue-300 transition-colors">
+                        {settings?.company_email || 'support@thedigiorb.com'}
                       </a>
                     </div>
                   </div>
@@ -84,8 +84,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-sm text-slate-400 mb-1">Call Us</p>
-                      <a href={`tel:${loading ? '' : settings?.company_phone?.replace(/\s/g, '')}`} className="text-white hover:text-blue-300 transition-colors">
-                        {loading ? 'Loading...' : settings?.company_phone}
+                      <a href={`tel:${settings?.company_phone?.replace(/\s/g, '')}`} className="text-white hover:text-blue-300 transition-colors">
+                        {settings?.company_phone || '+92 311 1588908'}
                       </a>
                     </div>
                   </div>

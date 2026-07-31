@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import apiClient from '@/lib/api/client';
+import { teamMembers } from '@/data/teamMembers';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://thedigiorb.com';
 
@@ -50,6 +51,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'yearly' as const,
       priority: 0.5,
     },
+    ...teamMembers.map((member) => ({
+      url: `${baseUrl}/team-member/${member.id}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
   ];
 
   let dynamicPages: MetadataRoute.Sitemap = [];
@@ -61,7 +68,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const projects: Project[] = response.data.data || response.data;
     
     dynamicPages = projects.map((project) => ({
-      url: `${baseUrl}/portfolio/${project.slug || project.id}`,
+      url: `${baseUrl}/portfolio/${project.id}`,
       lastModified: project.updated_at ? new Date(project.updated_at) : new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.8,

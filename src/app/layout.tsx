@@ -5,6 +5,27 @@ import Script from "next/script";
 import { SettingsProvider } from "@/context/SettingsContext";
 import ClientLayout from "@/components/ClientLayout";
 import { QueryProvider } from "@/components/providers/QueryProvider";
+import JsonLd from "@/components/JsonLd";
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "TheDigiOrb",
+  url: "https://thedigiorb.com",
+  logo: "https://thedigiorb.com/assets/img/nav-logo.png",
+  description:
+    "Professional IT solutions including web development, mobile apps, AI/LLMs, blockchain, and custom software. 5+ years of experience serving national and international clients.",
+  email: "support@thedigiorb.com",
+  telephone: "+923111588908",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "PK",
+  },
+  sameAs: [
+    "https://www.facebook.com/people/Thedigiorb/61572018711437/?sk=about",
+  ],
+  areaServed: "Worldwide",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thedigiorb.com'),
@@ -133,6 +154,8 @@ export default function RootLayout({
           <Favicon />
           <ClientLayout>{children}</ClientLayout>
         </SettingsProvider>
+
+        <JsonLd data={organizationSchema} />
 
         {/* Scroll Top */}
         <a

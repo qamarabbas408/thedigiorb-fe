@@ -1,8 +1,47 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { teamMembers, TeamMember } from '@/data/teamMembers';
 
 interface TeamMemberPageProps {
   params: Promise<{ id: string }>;
+}
+
+export function generateStaticParams() {
+  return teamMembers.map((member) => ({ id: String(member.id) }));
+}
+
+export async function generateMetadata({ params }: TeamMemberPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const member = teamMembers.find((m) => String(m.id) === id);
+
+  const title = member ? `${member.name} - ${member.role}` : 'Team Member';
+  const description = member?.bio;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/team-member/${id}`,
+    },
+    openGraph: {
+      type: 'profile',
+      url: `/team-member/${id}`,
+      title,
+      description,
+      siteName: 'TheDiGiorb',
+      images: [
+        member?.photo
+          ? { url: member.photo, width: 1200, height: 630, alt: member.name }
+          : { url: '/assets/img/og-image.png', width: 1200, height: 630, alt: 'TheDiGiorb - Digital Solutions' },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [member?.photo ?? '/assets/img/og-image.png'],
+    },
+  };
 }
 
 export default async function TeamMemberPage({ params }: TeamMemberPageProps) {
