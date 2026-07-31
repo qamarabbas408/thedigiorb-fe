@@ -1,9 +1,11 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useActiveTeam, useStatsBySection } from '@/hooks';
 import TeamSkeleton from '@/components/skeletons/TeamSkeleton';
 
 export default function Team() {
+  const router = useRouter();
   const { data: members, isLoading } = useActiveTeam();
   const { data: stats } = useStatsBySection('team');
 
@@ -51,7 +53,10 @@ export default function Team() {
                   data-aos="fade-up" 
                   data-aos-delay={(index + 1) * 100}
                 >
-                  <div className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                  <div 
+                    className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
+                    onClick={() => router.push(`/team-member/${member.id}`)}
+                  >
                     <div className="relative overflow-hidden">
                       {member.image ? (
                         <div className="w-full aspect-[4/5] bg-slate-100">
@@ -88,6 +93,7 @@ export default function Team() {
                                 href={member.facebook_url} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
                                 className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-slate-700 hover:bg-blue-500 hover:text-white transition-colors"
                               >
                                 <i className="bi bi-facebook" />
@@ -98,6 +104,7 @@ export default function Team() {
                                 href={member.twitter_url} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
                                 className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-slate-700 hover:bg-slate-800 hover:text-white transition-colors"
                               >
                                 <i className="bi bi-twitter-x" />
@@ -108,6 +115,7 @@ export default function Team() {
                                 href={member.linkedin_url} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
                                 className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-slate-700 hover:bg-blue-600 hover:text-white transition-colors"
                               >
                                 <i className="bi bi-linkedin" />
@@ -118,6 +126,7 @@ export default function Team() {
                                 href={member.instagram_url} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
                                 className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-slate-700 hover:bg-gradient-to-br hover:from-yellow-400 hover:to-pink-500 hover:text-white transition-colors"
                               >
                                 <i className="bi bi-instagram" />
