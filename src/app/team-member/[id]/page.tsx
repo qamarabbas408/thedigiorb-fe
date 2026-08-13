@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ArrowLeft, Award, Briefcase, Home, UserRound, Zap, Users, LayoutGrid } from 'lucide-react';
 import { teamMembers, TeamMember } from '@/data/teamMembers';
 
 interface TeamMemberPageProps {
@@ -50,12 +51,17 @@ export default async function TeamMemberPage({ params }: TeamMemberPageProps) {
 
   if (!member) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
-        <i className="bi bi-person-exclamation text-6xl text-gray-400 mb-4" />
-        <h3 className="text-2xl font-bold text-gray-700 mb-2">Member not found</h3>
-        <p className="text-gray-500 mb-6">The team member you are looking for does not exist.</p>
-        <Link href="/#team" className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
-          <i className="bi bi-arrow-left" /> Back to Team
+      <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 bg-[#030712]">
+        <div className="w-20 h-20 rounded-3xl bg-red-500/10 border border-red-500/30 flex items-center justify-center mb-6">
+          <UserRound className="w-10 h-10 text-red-400" />
+        </div>
+        <h3 className="text-2xl font-bold text-white mb-2">Member not found</h3>
+        <p className="text-slate-400 mb-6">The team member you are looking for does not exist.</p>
+        <Link
+          href="/#team"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 via-blue-600 to-cyan-500 text-xs font-mono font-bold text-white shadow-lg shadow-sky-500/20 hover:scale-105 transition-all"
+        >
+          <ArrowLeft className="w-4 h-4" /> Back to Team
         </Link>
       </div>
     );
@@ -86,191 +92,203 @@ function TeamMemberProfile({ member }: { member: TeamMember }) {
     member.hobbies.length > 0;
 
   return (
-    <>
-      {/* Page Title */}
-      <div className="page-title">
-        <div className="breadcrumbs">
-          <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <Link href="/"><i className="bi bi-house"></i> Home</Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link href="/#team">Team</Link>
-              </li>
-              <li className="breadcrumb-item active current">{member.name}</li>
-            </ol>
-          </nav>
-        </div>
-        <div className="title-wrapper">
-          <h1>{member.name}</h1>
-          <p>{member.role}</p>
-        </div>
-      </div>{/* End Page Title */}
+    <div className="min-h-screen pt-32 pb-16 bg-[#030712] overflow-hidden relative">
+      <div className="glow-orb w-[500px] h-[500px] bg-blue-600/10 top-0 right-[-200px]" />
 
-      {/* Team Member Section */}
-      <section id="team-member" className="team-member section">
-        <div className="container" data-aos="fade-up" data-aos-delay="100">
-          <div className="row gy-5">
-            {/* Photo Column */}
-            <div className="col-lg-4" data-aos="fade-right" data-aos-delay="100">
-              <div className="profile-card">
-                <div className="profile-photo">
-                  {member.photo ? (
-                    <img src={member.photo} alt={member.name} />
-                  ) : (
-                    <div className="avatar-fallback">{initials}</div>
-                  )}
-                  {member.yearsExperience > 0 && (
-                    <div className="floating-badge">
-                      <i className="bi bi-award"></i>
-                      <span>{member.yearsExperience}+ Years Experience</span>
-                    </div>
-                  )}
-                </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Breadcrumb */}
+        <nav className="flex items-center gap-2 text-xs font-mono text-slate-500 mb-10 flex-wrap" aria-label="breadcrumb">
+          <Link href="/" className="inline-flex items-center gap-1.5 hover:text-cyan-300 transition-colors">
+            <Home className="w-3.5 h-3.5" /> Home
+          </Link>
+          <span className="text-slate-700">/</span>
+          <Link href="/#team" className="hover:text-cyan-300 transition-colors">Team</Link>
+          <span className="text-slate-700">/</span>
+          <span className="text-cyan-300">{member.name}</span>
+        </nav>
+
+        {/* Profile Header */}
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          {/* Photo Column */}
+          <div className="lg:col-span-4">
+            <div className="glass-card p-6 rounded-3xl border border-slate-800 shadow-2xl relative">
+              <div className="rounded-2xl overflow-hidden bg-slate-900 border-2 border-slate-700/80 relative h-72">
+                {member.photo ? (
+                  <img src={member.photo} alt={member.name} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-cyan-500/10 to-blue-600/10">
+                    <span className="text-6xl font-black font-mono tracking-widest text-white">{initials}</span>
+                  </div>
+                )}
               </div>
-            </div>{/* End Photo Column */}
-
-            {/* Info Column */}
-            <div className="col-lg-8" data-aos="fade-left" data-aos-delay="200">
-              <div className="member-info-card">
-                <div className="member-category">
-                  <span className="dot"></span>
-                  <span>{member.role}</span>
+              {member.yearsExperience > 0 && (
+                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-mono font-bold shadow-lg shadow-amber-500/30 whitespace-nowrap">
+                  <Award className="w-4 h-4" />
+                  {member.yearsExperience}+ Years Experience
                 </div>
-                <h1>{member.name}</h1>
-                <p className="member-bio">{member.bio}</p>
+              )}
+            </div>
+          </div>
 
-                {metaItems.length > 0 && (
-                  <div className="meta-grid">
-                    {metaItems.map((item) => (
-                      <div key={item.label} className="meta-item">
-                        <span className="meta-label">{item.label}</span>
-                        <span className="meta-value">{item.value}</span>
+          {/* Info Column */}
+          <div className="lg:col-span-8">
+            <div className="glass-card p-8 rounded-3xl border border-slate-800 shadow-2xl">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-2 h-2 bg-sky-400 rounded-full shadow-[0_0_8px_#38bdf8]" />
+                <span className="text-xs font-mono font-bold text-sky-400 uppercase tracking-wide">{member.role}</span>
+              </div>
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">{member.name}</h1>
+              <p className="text-slate-300 leading-relaxed mt-4">{member.bio}</p>
+
+              {metaItems.length > 0 && (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                  {metaItems.map((item) => (
+                    <div key={item.label} className="p-4 bg-slate-900/60 border border-slate-800 rounded-2xl">
+                      <span className="text-[10px] font-mono font-semibold text-slate-500 uppercase tracking-wide block">{item.label}</span>
+                      <span className="text-white font-bold text-sm mt-1 block">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {member.stack.length > 0 && (
+                <div className="mt-6">
+                  <span className="text-[10px] font-mono font-semibold text-slate-500 uppercase tracking-wide block mb-3">Tech Stack</span>
+                  <div className="flex flex-wrap gap-2">
+                    {member.stack.map((tech) => (
+                      <span key={tech} className="px-3 py-1.5 bg-sky-500/10 border border-sky-500/30 text-sky-400 rounded-full text-xs font-mono font-semibold">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {hasContent && (
+          <div className="grid lg:grid-cols-12 gap-8 mt-12">
+            {/* Main Content */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="glass-card p-8 rounded-3xl border border-slate-800 shadow-xl">
+                <div className="flex items-center gap-4 mb-5">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white">
+                    <UserRound className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">About</h3>
+                </div>
+                <p className="text-slate-300 leading-relaxed">{member.bio}</p>
+              </div>
+
+              {member.experience.length > 0 && (
+                <div className="glass-card p-8 rounded-3xl border border-slate-800 shadow-xl">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white">
+                      <Briefcase className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white">Experience</h3>
+                  </div>
+                  <div className="space-y-6 border-l border-slate-800 pl-6">
+                    {member.experience.map((exp) => (
+                      <div key={`${exp.role}-${exp.company}`} className="relative">
+                        <span className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
+                        <span className="text-[11px] font-mono font-bold text-cyan-300 uppercase">{exp.period}</span>
+                        <h4 className="text-lg font-bold text-white mt-1">
+                          {exp.role} <span className="text-slate-400 font-normal">· {exp.company}</span>
+                        </h4>
+                        <p className="text-slate-400 text-sm leading-relaxed mt-1">{exp.description}</p>
                       </div>
                     ))}
                   </div>
-                )}
+                </div>
+              )}
+            </div>
 
-                {member.stack.length > 0 && (
-                  <div className="tech-stack">
-                    <span className="tech-label">Tech Stack</span>
-                    <div className="tech-icons">
-                      {member.stack.map((tech) => (
-                        <span key={tech} className="tech-badge">{tech}</span>
-                      ))}
-                    </div>
+            {/* Sidebar */}
+            <div className="lg:col-span-5 space-y-6">
+              {member.skills.length > 0 && (
+                <div className="glass-card p-6 rounded-3xl border border-slate-800 shadow-xl">
+                  <h3 className="text-xl font-bold text-white mb-5">Skills</h3>
+                  <div className="space-y-4">
+                    {member.skills.map((skill) => (
+                      <div key={skill.name}>
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-sm font-semibold text-slate-200">{skill.name}</span>
+                          <span className="text-xs font-mono text-cyan-300 font-bold">{skill.level}%</span>
+                        </div>
+                        <div className="h-2 rounded-full bg-slate-900 border border-slate-800 overflow-hidden">
+                          <span
+                            className="block h-full rounded-full bg-gradient-to-r from-sky-500 to-cyan-400 shadow-[0_0_8px_rgba(56,189,248,0.5)] transition-all duration-700"
+                            style={{ width: `${skill.level}%` }}
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                )}
-              </div>
-            </div>{/* End Info Column */}
+                </div>
+              )}
+
+              {member.hobbies.length > 0 && (
+                <div className="glass-card p-6 rounded-3xl border border-slate-800 shadow-xl">
+                  <h3 className="text-xl font-bold text-white mb-5">Outside of Work</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {member.hobbies.map((hobby) => (
+                      <span key={hobby.label} className="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono font-semibold text-slate-300 flex items-center gap-1.5">
+                        <span aria-hidden="true">{hobby.icon}</span>
+                        {hobby.label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
+        )}
 
-          {hasContent && (
-            <div className="content-sections">
-              <div className="row gy-5">
-                <div className="col-lg-7" data-aos="fade-up" data-aos-delay="100">
-                  <div className="content-block">
-                    <div className="block-header">
-                      <span className="block-icon"><i className="bi bi-person-badge"></i></span>
-                      <h3>About</h3>
-                    </div>
-                    <p>{member.bio}</p>
-                  </div>
-
-                  {member.experience.length > 0 && (
-                    <div className="content-block">
-                      <div className="block-header">
-                        <span className="block-icon"><i className="bi bi-briefcase"></i></span>
-                        <h3>Experience</h3>
-                      </div>
-                      <div className="experience-list">
-                        {member.experience.map((exp) => (
-                          <div key={`${exp.role}-${exp.company}`} className="experience-item">
-                            <span className="exp-period">{exp.period}</span>
-                            <h4>
-                              {exp.role} <span>· {exp.company}</span>
-                            </h4>
-                            <p>{exp.description}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>{/* End Main Content Column */}
-
-                <div className="col-lg-5" data-aos="fade-up" data-aos-delay="200">
-                  {member.skills.length > 0 && (
-                    <div className="features-sidebar">
-                      <h3 className="sidebar-title">Skills</h3>
-                      <div className="skill-list">
-                        {member.skills.map((skill) => (
-                          <div key={skill.name} className="skill-item">
-                            <div className="skill-header">
-                              <span>{skill.name}</span>
-                              <span>{skill.level}%</span>
-                            </div>
-                            <div className="skill-bar">
-                              <span style={{ width: `${skill.level}%` }}></span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {member.hobbies.length > 0 && (
-                    <div className="features-sidebar">
-                      <h3 className="sidebar-title">Outside of Work</h3>
-                      <div className="hobby-list">
-                        {member.hobbies.map((hobby) => (
-                          <span key={hobby.label} className="hobby-item">
-                            <span aria-hidden="true">{hobby.icon}</span>
-                            {hobby.label}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>{/* End Sidebar Column */}
-              </div>
-            </div>
-          )}
-
-          {member.projectsCount > 0 && (
-            <div className="projects-section" data-aos="fade-up" data-aos-delay="100">
-              <div className="projects-header">
-                <span className="section-label">
-                  <i className="bi bi-collection"></i> Projects
-                </span>
-                <h3>Projects Worked On</h3>
-              </div>
-              <div className="projects-count">
-                <div className="projects-count-number">{member.projectsCount}+</div>
-                <div className="projects-count-label">Projects Delivered</div>
-              </div>
-            </div>
-          )}
-
-          <div className="cta-section" data-aos="zoom-in">
-            <div className="cta-content">
-              <span className="cta-label">
-                <i className="bi bi-lightning-charge-fill"></i> Let&apos;s Collaborate
+        {member.projectsCount > 0 && (
+          <div className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-sky-950 via-slate-900 to-slate-950 border border-sky-500/30 shadow-xl text-center">
+            <span className="inline-flex items-center gap-2 text-xs font-mono font-bold text-sky-400 uppercase tracking-wide mb-2">
+              <LayoutGrid className="w-4 h-4" /> Projects
+            </span>
+            <h3 className="text-2xl font-bold text-white mb-4">Projects Worked On</h3>
+            <div className="flex items-center justify-center gap-4">
+              <span className="text-5xl font-black font-mono text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">
+                {member.projectsCount}+
               </span>
-              <h3>Want to work with {member.name.split(" ")[0]}?</h3>
-              <p>Tell us about your project and our team will get back to you.</p>
-              <div className="cta-buttons">
-                <Link href="/#contact" className="btn-cta-primary">
-                  Get in Touch <i className="bi bi-arrow-right"></i>
-                </Link>
-                <Link href="/#team" className="btn-cta-secondary">
-                  <i className="bi bi-people"></i> Meet the Team
-                </Link>
-              </div>
+              <span className="text-sm text-slate-400 font-mono">Projects Delivered</span>
+            </div>
+          </div>
+        )}
+
+        {/* CTA */}
+        <div className="mt-12 p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-sky-950 via-slate-900 to-slate-950 border border-sky-500/30 shadow-2xl shadow-sky-500/20 text-center overflow-hidden relative">
+          <div className="glow-orb w-[300px] h-[300px] bg-cyan-500/10 bottom-0 left-1/2 -translate-x-1/2" />
+          <div className="relative z-10 space-y-4">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 border border-sky-500/30 text-cyan-300 text-[10px] font-bold uppercase font-mono">
+              <Zap className="w-3.5 h-3.5" /> Let&apos;s Collaborate
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              Want to work with <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-500">{member.name.split(" ")[0]}</span>?
+            </h3>
+            <p className="text-slate-400 text-sm sm:text-base">Tell us about your project and our team will get back to you.</p>
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+              <Link
+                href="/#contact"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 via-blue-600 to-cyan-500 text-xs font-mono font-bold text-white shadow-lg shadow-sky-500/20 hover:scale-105 transition-all"
+              >
+                Get in Touch <ArrowLeft className="w-4 h-4 rotate-180" />
+              </Link>
+              <Link
+                href="/#team"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono font-bold text-slate-200 hover:text-white hover:border-cyan-400/50 transition-all"
+              >
+                <Users className="w-4 h-4" /> Meet the Team
+              </Link>
             </div>
           </div>
         </div>
-      </section>{/* /Team Member Section */}
-    </>
+      </div>
+    </div>
   );
 }

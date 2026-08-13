@@ -117,28 +117,6 @@ export default function RootLayout({
           rel="stylesheet"
         />
 
-        {/* Vendor CSS Files */}
-        <link
-          href="/assets/vendor/bootstrap/css/bootstrap.min.css"
-          rel="stylesheet"
-        />
-        <link
-          href="/assets/vendor/bootstrap-icons/bootstrap-icons.css"
-          rel="stylesheet"
-        />
-        <link href="/assets/vendor/aos/aos.css" rel="stylesheet" />
-        <link
-          href="/assets/vendor/glightbox/css/glightbox.min.css"
-          rel="stylesheet"
-        />
-        <link
-          href="/assets/vendor/swiper/swiper-bundle.min.css"
-          rel="stylesheet"
-        />
-
-        {/* Main CSS File */}
-        <link href="/assets/css/main.css" rel="stylesheet" />
-
         {/* Google Analytics */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-HK10748610" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -156,55 +134,6 @@ export default function RootLayout({
         </SettingsProvider>
 
         <JsonLd data={organizationSchema} />
-
-        {/* Scroll Top */}
-        <a
-          href="#"
-          id="scroll-top"
-          className="scroll-top d-flex align-items-center justify-content-center"
-        >
-          <i className="bi bi-arrow-up-short"></i>
-        </a>
-
-        {/* Preloader */}
-        <div id="preloader"></div>
-
-        {/* Vendor JS Files */}
-        <Script
-          src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/vendor/php-email-form/validate.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/vendor/aos/aos.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/vendor/glightbox/js/glightbox.min.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/vendor/purecounter/purecounter_vanilla.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/vendor/swiper/swiper-bundle.min.js"
-          strategy="afterInteractive"
-        />
-
-        {/* Main JS File */}
-        <Script src="/assets/js/main.js" strategy="afterInteractive" />
         </QueryProvider>
       </body>
     </html>
