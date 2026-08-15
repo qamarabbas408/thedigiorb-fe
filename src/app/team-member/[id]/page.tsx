@@ -29,11 +29,11 @@ export async function generateMetadata({ params }: TeamMemberPageProps): Promise
       url: `/team-member/${id}`,
       title,
       description,
-      siteName: 'TheDiGiorb',
+      siteName: 'TheDigiOrb',
       images: [
         member?.photo
           ? { url: member.photo, width: 1200, height: 630, alt: member.name }
-          : { url: '/assets/img/og-image.png', width: 1200, height: 630, alt: 'TheDiGiorb - Digital Solutions' },
+          : { url: '/assets/img/og-image.png', width: 1200, height: 630, alt: 'TheDigiOrb - Digital Solutions' },
       ],
     },
     twitter: {

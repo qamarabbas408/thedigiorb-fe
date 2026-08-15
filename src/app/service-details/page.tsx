@@ -7,12 +7,9 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Service Details | TheDigiOrb',
+  title: 'Service Details',
   description: 'Learn more about our expert services and how we can help transform your business with innovative digital solutions.',
   robots: 'noindex, nofollow',
-  alternates: {
-    canonical: '/service-details',
-  },
 };
 
 const capabilities = [

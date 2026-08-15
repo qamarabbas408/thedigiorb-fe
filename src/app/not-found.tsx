@@ -1,16 +1,25 @@
 import React from 'react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import {
   ArrowLeft, Flag, Home, LayoutGrid, Users, Mail, Frown,
 } from 'lucide-react';
 
+export const metadata: Metadata = {
+  title: 'Page Not Found',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 export default function NotFound() {
   return (
-    <section id="error-404" className="min-h-screen pt-32 pb-16 bg-[#030712] overflow-hidden relative">
+    <section id="error-404" className="min-h-screen flex items-center justify-center bg-[#030712] overflow-hidden relative">
       <div className="glow-orb w-[500px] h-[500px] bg-red-600/10 top-20 right-[-150px]" />
       <div className="glow-orb w-[400px] h-[400px] bg-sky-600/10 bottom-0 left-[-150px]" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           {/* Visual */}
           <div className="relative flex items-center justify-center">

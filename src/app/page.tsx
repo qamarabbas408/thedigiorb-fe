@@ -2,10 +2,10 @@ import { Metadata } from 'next';
 import RevampLandingPage from '@/components/revamp/LandingPage';
 
 export const metadata: Metadata = {
-  title: 'TheDigiOrb - Crafting Exceptional Digital Experiences',
+  title: 'Crafting Exceptional Digital Experiences',
   description: 'Building innovative web and mobile solutions for businesses worldwide. Expert web development, mobile apps, and digital transformation services.',
   openGraph: {
-    title: 'TheDigiOrb - Crafting Exceptional Digital Experiences',
+    title: 'Crafting Exceptional Digital Experiences',
     description: 'Building innovative web and mobile solutions for businesses worldwide. Expert web development, mobile apps, and digital transformation services.',
     url: 'https://thedigiorb.com',
     siteName: 'TheDigiOrb',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
         url: 'https://thedigiorb.com/assets/img/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'TheDiGiorb - Digital Solutions',
+        alt: 'TheDigiOrb - Digital Solutions',
       },
     ],
     locale: 'en_US',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TheDiGiorb - Crafting Exceptional Digital Experiences',
+    title: 'Crafting Exceptional Digital Experiences',
     description: 'Building innovative web and mobile solutions for businesses worldwide.',
     images: ['https://thedigiorb.com/assets/img/og-image.png'],
   },
