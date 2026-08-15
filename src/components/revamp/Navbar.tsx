@@ -105,21 +105,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
       >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo with Orb Animation */}
-          <a href={base ? '/' : '#home'} className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 flex items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 via-blue-600 to-cyan-400 p-[1px] shadow-lg shadow-sky-500/25 group-hover:shadow-sky-500/40 transition-all duration-300">
-              <div className="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center overflow-hidden relative">
-                {/* Glowing sphere inner animation */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/30 to-blue-600/30 animate-pulse-slow"></div>
-                <div className="w-5 h-5 rounded-full bg-gradient-to-r from-cyan-400 to-sky-500 shadow-[0_0_12px_#38bdf8] group-hover:scale-110 transition-transform duration-300"></div>
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold tracking-wider text-white font-mono flex items-center gap-1">
-                DIGI<span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-500">ORB</span>
-              </span>
-              <span className="text-[10px] text-slate-400 tracking-widest uppercase -mt-1 font-sans">Digital Solutions</span>
-            </div>
+          {/* Logo */}
+          <a href={base ? '/' : '#home'} className="flex items-center group">
+            <img
+              src={theme === 'dark' ? '/assets/img/nav-logo.png' : '/assets/img/nav-logo-light.png'}
+              alt="TheDigiOrb"
+              className="h-9 sm:h-10 w-auto object-contain group-hover:opacity-90 transition-opacity duration-300"
+            />
           </a>
 
           {/* Desktop Nav links */}
@@ -192,6 +184,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
           </div>
         </div>
       </div>
+      </header>
 
       {/* Mobile Menu Slide-Over Overlay */}
       <AnimatePresence>
@@ -223,14 +216,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
                     onClick={() => setMobileMenuOpen(false)}
                     className="flex items-center gap-2.5"
                   >
-                    <div className="relative w-8 h-8 flex items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 via-blue-600 to-cyan-400 p-[1px]">
-                      <div className="w-full h-full bg-slate-950 rounded-[7px] flex items-center justify-center overflow-hidden relative">
-                        <div className="w-3.5 h-3.5 rounded-full bg-gradient-to-r from-cyan-400 to-sky-500 shadow-[0_0_8px_#38bdf8]"></div>
-                      </div>
-                    </div>
-                    <span className="text-lg font-bold tracking-wider text-white font-mono">
-                      DIGI<span className="text-cyan-400">ORB</span>
-                    </span>
+                    <img
+                      src={theme === 'dark' ? '/assets/img/nav-logo.png' : '/assets/img/nav-logo-light.png'}
+                      alt="TheDigiOrb"
+                      className="h-7 w-auto object-contain"
+                    />
                   </a>
 
                   <button
@@ -307,7 +297,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
           </div>
         )}
       </AnimatePresence>
-    </header>
   </>
   );
 };

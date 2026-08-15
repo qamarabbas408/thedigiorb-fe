@@ -168,6 +168,7 @@ html.light .glass-card-hover:hover {
 /* Background Overrides for Light Mode */
 html.light .bg-slate-950,
 html.light .bg-\[\#080c14\],
+html.light .bg-\[\#080c14\]\/95,
 html.light .bg-\[\#030712\],
 html.light .bg-\[\#0a101f\] {
   background-color: #f8fafc !important;

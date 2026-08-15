@@ -1,12 +1,14 @@
 'use client';
 
 import React from 'react';
-import { ArrowUp, Send, Network, X as TwitterIcon, Instagram, Linkedin, Facebook } from 'lucide-react';
+import { ArrowUp, Send, X as TwitterIcon, Instagram, Linkedin, Facebook } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useSettings } from '@/context/SettingsContext';
+import { useTheme } from './ThemeProvider';
 
 export const RevampFooter: React.FC = () => {
   const { settings } = useSettings();
+  const { theme } = useTheme();
   const pathname = usePathname();
   const isLanding = pathname === '/';
   const base = isLanding ? '' : '/';
@@ -34,14 +36,11 @@ export const RevampFooter: React.FC = () => {
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <a href={`${base}#home`} className="flex items-center gap-3 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-400 via-cyan-400 to-blue-600 p-[1px] shadow-lg shadow-cyan-400/20">
-                <div className="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
-                  <Network className="w-5 h-5 text-cyan-300" />
-                </div>
-              </div>
-              <span className="text-xl font-bold tracking-wider text-white font-mono">
-                DIGI<span className="text-cyan-400">ORB</span>
-              </span>
+              <img
+                src={theme === 'dark' ? '/assets/img/nav-logo.png' : '/assets/img/nav-logo-light.png'}
+                alt="TheDigiOrb"
+                className="h-8 w-auto object-contain group-hover:opacity-90 transition-opacity duration-300"
+              />
             </a>
 
             <p className="text-slate-400 text-xs leading-relaxed max-w-sm">{description}</p>
