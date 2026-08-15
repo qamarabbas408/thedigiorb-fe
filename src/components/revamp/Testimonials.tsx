@@ -57,7 +57,7 @@ export const RevampTestimonials: React.FC<TestimonialsSectionProps> = ({ isLoadi
             Verified Partner <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-500">Node Endorsements</span>
           </h2>
           <p className="text-slate-400 text-sm">
-            Read direct feedback from tech founders and enterprise leaders operating on the DigiOrb engine.
+            Read direct feedback from tech founders and enterprise leaders operating on TheDigiOrb&apos;s engine.
           </p>
         </div>
 

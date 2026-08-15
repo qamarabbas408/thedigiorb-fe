@@ -134,7 +134,7 @@ export const InteractiveGraph: React.FC<InteractiveGraphProps> = ({ onContactCli
 
           <div className="p-4 rounded-2xl bg-slate-900/90 border border-cyan-500/30 shadow-lg shadow-cyan-500/10 flex items-center justify-center gap-3">
             <span className="w-6 h-6 rounded-full bg-cyan-400 text-slate-950 font-bold flex items-center justify-center shrink-0">2</span>
-            <span className="text-cyan-300 font-bold">DigiOrb Core Engine</span>
+            <span className="text-cyan-300 font-bold">TheDigiOrb Core Engine</span>
           </div>
 
           <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-center justify-center gap-3">

@@ -47,7 +47,7 @@ export const RevampFaq: React.FC<FaqSectionProps> = ({ onContactClick }) => {
           </h2>
 
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Everything you need to know about how The DigiOrb plans, engineers, delivers, and supports high-performance digital products.
+            Everything you need to know about how TheDigiOrb plans, engineers, delivers, and supports high-performance digital products.
           </p>
         </div>
 

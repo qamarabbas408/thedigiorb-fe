@@ -17,7 +17,7 @@ export const RevampHero: React.FC<HeroProps> = () => {
   const [activeHeroNode, setActiveHeroNode] = useState<string>('core');
 
   const heroNodes = [
-    { id: 'core', name: 'DigiOrb Central Engine', icon: Network, category: 'Core Hub', stats: '100% Sync', color: 'from-sky-500 to-cyan-400' },
+    { id: 'core', name: 'TheDigiOrb Central Engine', icon: Network, category: 'Core Hub', stats: '100% Sync', color: 'from-sky-500 to-cyan-400' },
     { id: 'web', name: 'Web Engineering', icon: Globe, category: 'Service Node', stats: '25+ Deployed', color: 'from-cyan-400 to-blue-600' },
     { id: 'mobile', name: 'Mobile Apps', icon: Smartphone, category: 'Service Node', stats: '500K Installs', color: 'from-blue-500 to-indigo-600' },
     { id: 'ui', name: 'UI/UX Design', icon: Palette, category: 'Service Node', stats: '60+ Systems', color: 'from-purple-500 to-sky-400' },
@@ -171,7 +171,7 @@ export const RevampHero: React.FC<HeroProps> = () => {
                   }`}
                 >
                   <Network className="w-7 h-7 text-sky-400 mb-1 animate-pulse" />
-                  <span className="text-[10px] font-mono font-bold text-white uppercase leading-tight">DigiOrb Core</span>
+                  <span className="text-[10px] font-mono font-bold text-white uppercase leading-tight">TheDigiOrb Core</span>
                 </div>
 
                 {/* Floating Peripheral Service Nodes */}

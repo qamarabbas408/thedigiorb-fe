@@ -250,7 +250,7 @@ export const TESTIMONIALS: Testimonial[] = [
     company: "Aetheria Cloud Systems",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
     rating: 5,
-    quote: "Working with Abbas and the DigiOrb team was a game changer. Their mastery of Rust, React, and cloud serverless architecture delivered our platform 3 weeks ahead of schedule with zero post-launch bugs.",
+    quote: "Working with Abbas and the TheDigiOrb team was a game changer. Their mastery of Rust, React, and cloud serverless architecture delivered our platform 3 weeks ahead of schedule with zero post-launch bugs.",
     tags: ["Desktop App", "Cloud Infra"]
   },
   {
@@ -260,7 +260,7 @@ export const TESTIMONIALS: Testimonial[] = [
     company: "OmniVentures",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
     rating: 5,
-    quote: "The DigiOrb team transformed our legacy ERP into a sleek, lightning-fast web application. Their 24/7 support and attention to pixel perfection is truly unmatched in the software industry.",
+    quote: "TheDigiOrb team transformed our legacy ERP into a sleek, lightning-fast web application. Their 24/7 support and attention to pixel perfection is truly unmatched in the software industry.",
     tags: ["E-Commerce", "Web ERP"]
   }
 ];
@@ -308,7 +308,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     id: "faq-1",
     category: "Process",
-    question: "What does the typical project development cycle look like at The DigiOrb?",
+    question: "What does the typical project development cycle look like at TheDigiOrb?",
     answer: "Our structured cycle moves through 4 key phases: 1) Strategic Discovery & Architecture Mapping, 2) Interactive Wireframing & High-Fidelity UI/UX Design, 3) Full-Stack Agile Engineering with bi-weekly preview sprints, and 4) Automated Testing, Security Audit & Cloud Deployment with ongoing support."
   },
   {
@@ -320,7 +320,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     id: "faq-3",
     category: "General",
-    question: "Can The DigiOrb take over or optimize an existing codebase?",
+    question: "Can TheDigiOrb take over or optimize an existing codebase?",
     answer: "Absolutely. We conduct thorough Codebase Integrity Audits and refactoring roadmaps for ongoing projects. We optimize slow database queries, modernize UI components, fix security vulnerabilities, and seamlessly upgrade legacy frameworks."
   },
   {
@@ -332,7 +332,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     id: "faq-5",
     category: "Pricing & Delivery",
-    question: "What pricing models does The DigiOrb offer?",
+    question: "What pricing models does TheDigiOrb offer?",
     answer: "We offer both Milestone-Based Fixed Pricing for clearly defined project scopes, and Dedicated Developer Sprints (Time & Materials) for dynamic startups needing continuous product iteration and agile feature additions."
   },
   {

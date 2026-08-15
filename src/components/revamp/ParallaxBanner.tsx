@@ -45,7 +45,7 @@ export const ParallaxBanner: React.FC<ParallaxBannerProps> = ({ onContactClick }
             <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
               Ready to Connect Your Systems to the{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-500">
-                DigiOrb Work Graph?
+                TheDigiOrb Work Graph?
               </span>
             </h2>
 

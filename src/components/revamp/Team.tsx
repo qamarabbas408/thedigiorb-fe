@@ -53,7 +53,7 @@ export const RevampTeam: React.FC = () => {
             <span>GRAPH ARCHITECTS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            Meet the Minds Behind <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-500">The DigiOrb Graph</span>
+            Meet the Minds Behind <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-500">TheDigiOrb Graph</span>
           </h2>
           <p className="text-slate-400 text-sm sm:text-base">
             Senior full-stack engineers, cloud architects, and UI systems designers driving innovation.

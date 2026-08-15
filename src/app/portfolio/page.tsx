@@ -68,7 +68,7 @@ function PortfolioContent() {
             Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-500">Work & Projects</span>
           </h1>
           <p className="text-slate-400 text-sm sm:text-base">
-            High-impact software, web platforms, and digital products engineered by The DigiOrb team.
+            High-impact software, web platforms, and digital products engineered by TheDigiOrb team.
           </p>
         </div>
 

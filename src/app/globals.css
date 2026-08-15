@@ -184,23 +184,30 @@ html.light .bg-slate-900\/60,
 html.light .bg-slate-900\/50,
 html.light .bg-slate-900\/40,
 html.light .bg-slate-950\/95,
-html.light .bg-slate-950\/80 {
+html.light .bg-slate-950\/85,
+html.light .bg-slate-950\/80,
+html.light .bg-slate-950\/70,
+html.light .bg-slate-950\/60 {
   background-color: rgba(255, 255, 255, 0.92) !important;
 }
 
 html.light .bg-slate-800,
 html.light .bg-slate-800\/80,
+html.light .bg-slate-800\/70,
 html.light .bg-slate-800\/60,
+html.light .bg-slate-800\/50,
 html.light .bg-slate-800\/40 {
   background-color: #f1f5f9 !important;
 }
 
 /* Borders in Light Mode */
 html.light .border-slate-800,
+html.light .border-slate-800\/90,
 html.light .border-slate-800\/80,
 html.light .border-slate-800\/60,
 html.light .border-slate-700,
-html.light .border-slate-700\/80 {
+html.light .border-slate-700\/80,
+html.light .border-slate-700\/60 {
   border-color: #e2e8f0 !important;
 }
 
@@ -225,13 +232,53 @@ html.light .text-slate-500 {
   color: #64748b !important;
 }
 
-/* Preserve contrast for white text on primary gradient buttons */
+/* White text on light-converted surfaces (glass-card, slate-900/950, etc.)
+   becomes dark in light mode */
+html.light .text-white {
+  color: #0f172a !important;
+}
+
+/* Preserve contrast for white text on gradient buttons/CTAs in light mode */
+html.light .text-white.bg-gradient-to-r,
+html.light .text-white.bg-gradient-to-br,
 html.light .bg-gradient-to-r .text-white,
 html.light .bg-gradient-to-br .text-white,
 html.light button.bg-gradient-to-r,
 html.light a.bg-gradient-to-r,
 html.light .bg-cyan-400 {
-  color: #ffffff;
+  color: #ffffff !important;
+}
+
+/* CTA banner cards (from-sky-950 gradient) become light in light mode */
+html.light .from-sky-950 {
+  --tw-gradient-from: #e0f2fe !important;
+  --tw-gradient-via: #ffffff !important;
+  --tw-gradient-to: #e2e8f0 !important;
+}
+
+html.light .from-sky-950 h1,
+html.light .from-sky-950 h2,
+html.light .from-sky-950 h3,
+html.light .from-sky-950 h4,
+html.light .from-sky-950 h5,
+html.light .from-sky-950 > * > p,
+html.light .from-sky-950 .text-white,
+html.light .from-sky-950 .text-slate-200 {
+  color: #0f172a !important;
+}
+
+html.light .from-sky-950 .text-slate-300,
+html.light .from-sky-950 .text-slate-400,
+html.light .from-sky-950 .text-slate-500 {
+  color: #475569 !important;
+}
+
+html.light .from-sky-950 .text-cyan-300 {
+  color: #0891b2 !important;
+}
+
+html.light .from-sky-950 .border-sky-500\/30 {
+  border-color: rgba(56, 189, 248, 0.4) !important;
 }
 
 /* Inputs & Textareas */

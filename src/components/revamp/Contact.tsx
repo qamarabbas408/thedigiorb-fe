@@ -58,7 +58,7 @@ export const RevampContact: React.FC = () => {
             <span>CONNECT GRAPH NODE</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            Initiate Connection With <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-500">The DigiOrb Engine</span>
+            Initiate Connection With <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-500">TheDigiOrb Engine</span>
           </h2>
           <p className="text-slate-400 text-sm sm:text-base">
             Reach out to establish a direct communication link with our engineering team.
@@ -178,7 +178,7 @@ export const RevampContact: React.FC = () => {
                 </div>
                 <h4 className="text-xl font-mono font-bold text-white">SIGNAL RECEIVED</h4>
                 <p className="text-sm text-slate-300">
-                  Thank you for connecting with DigiOrb. Our team will contact you via email shortly.
+                  Thank you for connecting with TheDigiOrb. Our team will contact you via email shortly.
                 </p>
               </motion.div>
             ) : (

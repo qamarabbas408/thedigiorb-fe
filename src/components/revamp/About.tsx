@@ -35,7 +35,7 @@ export const RevampAbout: React.FC<AboutSectionProps> = () => {
               <div className="relative rounded-3xl overflow-hidden border border-slate-700/80 shadow-2xl group">
                 <img
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80"
-                  alt="The DigiOrb Team working on software solutions"
+                  alt="TheDigiOrb Team working on software solutions"
                   className="w-full h-[400px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/30 to-transparent"></div>
@@ -51,7 +51,7 @@ export const RevampAbout: React.FC<AboutSectionProps> = () => {
               >
                 <img
                   src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
-                  alt="DigiOrb UX Design session"
+                  alt="TheDigiOrb UX Design session"
                   className="w-full h-44 object-cover object-center"
                 />
               </motion.div>
