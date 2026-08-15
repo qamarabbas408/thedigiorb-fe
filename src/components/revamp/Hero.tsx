@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { ArrowRight, Network, Sparkles, ShieldCheck, Code2, Globe, Smartphone, Palette, Cloud, Activity } from 'lucide-react';
+import { ArrowRight, Network, ShieldCheck, Code2, Globe, Smartphone, Palette, Cloud, Activity } from 'lucide-react';
 
 interface HeroProps {
   onContactClick?: () => void;
@@ -151,7 +151,7 @@ export const RevampHero: React.FC<HeroProps> = () => {
                     <Network className="w-4 h-4" />
                   </div>
                   <span className="text-xs font-mono font-bold text-white uppercase tracking-wider">
-                    Interactive Neural Canvas
+                    Interactive Technology Canvas
                   </span>
                 </div>
                 <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">

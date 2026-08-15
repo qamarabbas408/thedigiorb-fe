@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ExternalLink, Calendar, Layers, ShieldCheck, Sparkles } from 'lucide-react';
+import { X, ExternalLink, Calendar, Layers, ShieldCheck, TrendingUp } from 'lucide-react';
 import { PortfolioItem } from '@/lib/revamp';
 
 interface ProjectModalProps {
@@ -91,7 +91,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             {/* Key Metrics Pill */}
             {project.metrics && (
               <div className="p-4 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center gap-3">
-                <Sparkles className="w-5 h-5 text-cyan-300 shrink-0" />
+                <TrendingUp className="w-5 h-5 text-cyan-300 shrink-0" />
                 <div>
                   <span className="text-xs font-bold uppercase tracking-wider text-sky-400 block">Performance Highlight</span>
                   <span className="text-sm font-semibold text-white">{project.metrics}</span>

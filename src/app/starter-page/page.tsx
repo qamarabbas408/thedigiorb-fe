@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Home, Sparkles, ArrowRight } from 'lucide-react';
+import { Home, Rocket, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Starter Page | TheDigiOrb',
@@ -30,7 +30,7 @@ export default function StarterPagePage() {
 
         <div className="max-w-3xl mx-auto text-center p-8 sm:p-12 glass-card rounded-3xl border border-slate-800 shadow-2xl">
           <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white mb-6">
-            <Sparkles className="w-8 h-8" />
+            <Rocket className="w-8 h-8" />
           </div>
           <h2 className="text-2xl font-bold text-white mb-4">Getting Started</h2>
           <p className="text-slate-300 leading-relaxed mb-6">Begin your journey with us and transform your digital presence. This is a placeholder page. Contact us to discuss your custom project requirements and let us bring your vision to life.</p>

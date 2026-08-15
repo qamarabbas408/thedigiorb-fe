@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Send, Clock, ShieldCheck, CheckCircle2, Sparkles, Facebook, Twitter, Linkedin, Instagram, Network, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Clock, ShieldCheck, CheckCircle2, Facebook, Twitter, Linkedin, Instagram, Network, Loader2 } from 'lucide-react';
 import { useSettings } from '@/context/SettingsContext';
 import { useSubmitContact } from '@/hooks';
 

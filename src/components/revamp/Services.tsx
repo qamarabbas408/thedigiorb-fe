@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, Check, Sparkles, X, Network } from 'lucide-react';
+import { ArrowRight, Check, X, Network } from 'lucide-react';
 import { SERVICES, ServiceItem, getIcon } from '@/lib/revamp';
 import { usePublishedServices } from '@/hooks';
 

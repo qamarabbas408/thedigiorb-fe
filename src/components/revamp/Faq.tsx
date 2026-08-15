@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown, HelpCircle, Search, Sparkles, MessageSquare, ArrowRight } from 'lucide-react';
+import { ChevronDown, HelpCircle, Search, MessageSquare, ArrowRight } from 'lucide-react';
 import { FAQ_ITEMS } from '@/lib/revamp';
 
 interface FaqSectionProps {
@@ -181,7 +181,6 @@ export const RevampFaq: React.FC<FaqSectionProps> = ({ onContactClick }) => {
             onClick={onContactClick}
             className="w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-sky-500 via-blue-600 to-cyan-500 text-xs font-mono font-bold text-white shadow-lg shadow-sky-500/20 hover:scale-105 transition-all flex items-center justify-center gap-2 flex-shrink-0"
           >
-            <Sparkles className="w-4 h-4 text-cyan-200" />
             <span>Consult Our Engineers</span>
             <ArrowRight className="w-4 h-4" />
           </button>

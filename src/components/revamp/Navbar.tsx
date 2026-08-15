@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ArrowRight, Sparkles, Phone, Mail, ChevronRight, Sun, Moon } from 'lucide-react';
+import { Menu, X, ArrowRight, Phone, Mail, ChevronRight, Sun, Moon } from 'lucide-react';
 import { useSettings } from '@/context/SettingsContext';
 import { useTheme } from './ThemeProvider';
 
@@ -167,7 +167,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
               className="relative inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-sky-500 via-blue-600 to-cyan-500 rounded-xl shadow-lg shadow-sky-500/20 hover:shadow-sky-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 group overflow-hidden"
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-              <Sparkles className="w-3.5 h-3.5 text-cyan-200" />
               <span className="relative z-10">Start Project</span>
               <ArrowRight className="w-3.5 h-3.5 relative z-10 group-hover:translate-x-1 transition-transform" />
             </button>
@@ -300,7 +299,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
                   }}
                   className="w-full py-3.5 px-4 flex items-center justify-center gap-2 text-sm font-bold text-white bg-gradient-to-r from-sky-500 via-blue-600 to-cyan-500 rounded-xl shadow-lg shadow-sky-500/25 active:scale-[0.98] transition-transform"
                 >
-                  <Sparkles className="w-4 h-4 text-cyan-200" />
                   <span>Start Your Project</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>

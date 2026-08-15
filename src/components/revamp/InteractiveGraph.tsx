@@ -11,7 +11,6 @@ import {
   CheckCircle2,
   Cpu,
   Layers,
-  Sparkles,
   Network,
   ShieldCheck,
   Activity,
@@ -302,7 +301,7 @@ export const InteractiveGraph: React.FC<InteractiveGraphProps> = ({ onContactCli
                     <span>Clean & Scalable Code</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-cyan-300" />
+                    <CheckCircle2 className="w-4 h-4 text-sky-400" />
                     <span>Responsive UI Systems</span>
                   </div>
                 </div>
