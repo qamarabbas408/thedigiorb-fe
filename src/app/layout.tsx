@@ -10,9 +10,11 @@ import JsonLd from "@/components/JsonLd";
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": "https://thedigiorb.com/#organization",
   name: "TheDigiOrb",
   url: "https://thedigiorb.com",
   logo: "https://thedigiorb.com/assets/img/nav-logo.png",
+  image: "https://thedigiorb.com/assets/img/og-image.png",
   description:
     "Professional IT solutions including web development, mobile apps, AI/LLMs, blockchain, and custom software. 5+ years of experience serving national and international clients.",
   email: "support@thedigiorb.com",
@@ -25,6 +27,16 @@ const organizationSchema = {
     "https://www.facebook.com/people/Thedigiorb/61572018711437/?sk=about",
   ],
   areaServed: "Worldwide",
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://thedigiorb.com/#website",
+  name: "TheDigiOrb",
+  url: "https://thedigiorb.com",
+  publisher: { "@id": "https://thedigiorb.com/#organization" },
+  inLanguage: "en",
 };
 
 export const metadata: Metadata = {
@@ -134,6 +146,7 @@ export default function RootLayout({
         </SettingsProvider>
 
         <JsonLd data={organizationSchema} />
+        <JsonLd data={websiteSchema} />
         </QueryProvider>
       </body>
     </html>

@@ -6,6 +6,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { motion } from 'motion/react';
 import { ArrowRight, ChevronLeft, ChevronRight, Eye, Briefcase, Network, Star, Zap, PlayCircle } from 'lucide-react';
 import { usePublishedProjectsWithTotal, useCategories } from '@/hooks';
+import JsonLd from '@/components/JsonLd';
 
 const PROJECTS_PER_PAGE = 12;
 
@@ -55,6 +56,34 @@ function PortfolioContent() {
 
   return (
     <div className="min-h-screen pt-32 pb-16 bg-[#030712] overflow-hidden relative">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://thedigiorb.com" },
+            { "@type": "ListItem", position: 2, name: "Portfolio", item: "https://thedigiorb.com/portfolio" },
+          ],
+        }}
+      />
+      {projects.length > 0 && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "TheDigiOrb Portfolio Projects",
+            numberOfItems: projects.length,
+            itemListElement: projects.map((project, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              url: `https://thedigiorb.com/portfolio/${project.id}`,
+              name: project.title,
+              ...(project.description ? { description: project.description } : {}),
+              ...(project.image ? { image: project.image } : {}),
+            })),
+          }}
+        />
+      )}
       <div className="glow-orb w-[500px] h-[500px] bg-sky-600/10 top-0 right-[-200px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

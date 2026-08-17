@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, Award, Briefcase, Home, UserRound, Zap, Users, LayoutGrid } from 'lucide-react';
 import { teamMembers, TeamMember } from '@/data/teamMembers';
+import JsonLd from '@/components/JsonLd';
 
 interface TeamMemberPageProps {
   params: Promise<{ id: string }>;
@@ -9,6 +10,60 @@ interface TeamMemberPageProps {
 
 export function generateStaticParams() {
   return teamMembers.map((member) => ({ id: String(member.id) }));
+}
+
+function buildMemberSchemas(member: TeamMember) {
+  const profileUrl = `https://thedigiorb.com/team-member/${member.id}`;
+
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${profileUrl}#person`,
+    name: member.name,
+    jobTitle: member.role,
+    description: member.bio,
+    url: profileUrl,
+    worksFor: { "@id": "https://thedigiorb.com/#organization" },
+    ...(member.photo ? { image: member.photo } : {}),
+    ...(member.stack.length > 0 ? { knowsAbout: member.stack } : {}),
+    ...(member.experience.length > 0
+      ? {
+          alumniOf: member.experience
+            .filter((e) => e.company !== "TheDigiOrb")
+            .map((e) => ({
+              "@type": "Organization",
+              name: e.company,
+            })),
+        }
+      : {}),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://thedigiorb.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Team",
+        item: "https://thedigiorb.com/#team",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: member.name,
+        item: profileUrl,
+      },
+    ],
+  };
+
+  return [personSchema, breadcrumbSchema];
 }
 
 export async function generateMetadata({ params }: TeamMemberPageProps): Promise<Metadata> {
@@ -67,7 +122,14 @@ export default async function TeamMemberPage({ params }: TeamMemberPageProps) {
     );
   }
 
-  return <TeamMemberProfile member={member} />;
+  return (
+    <>
+      {buildMemberSchemas(member).map((schema) => (
+        <JsonLd key={schema["@type"]} data={schema} />
+      ))}
+      <TeamMemberProfile member={member} />
+    </>
+  );
 }
 
 function TeamMemberProfile({ member }: { member: TeamMember }) {
