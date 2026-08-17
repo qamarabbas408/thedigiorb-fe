@@ -3,36 +3,8 @@ import {
   PortfolioItem,
   RevampTeamMember,
   Testimonial,
-  MetricStat,
   FaqItem,
 } from './types';
-
-export const HERO_STATS: MetricStat[] = [
-  {
-    label: "Projects Delivered",
-    value: "40+",
-    subtext: "High impact software & web builds",
-    iconName: "FolderCheck"
-  },
-  {
-    label: "Happy Clients",
-    value: "85+",
-    subtext: "Global startups & enterprises",
-    iconName: "Smile"
-  },
-  {
-    label: "Years Experience",
-    value: "5+",
-    subtext: "Engineering & design mastery",
-    iconName: "Calendar"
-  },
-  {
-    label: "Client Satisfaction",
-    value: "98%",
-    subtext: "Proven client retention rate",
-    iconName: "Award"
-  }
-];
 
 export const SERVICES: ServiceItem[] = [
   {

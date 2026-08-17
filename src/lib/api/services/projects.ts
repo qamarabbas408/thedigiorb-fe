@@ -3,12 +3,6 @@ import { Project } from '../types';
 import { processImageUrls } from '../utils';
 
 export const projectsApi = {
-  getAll: async (): Promise<Project[]> => {
-    const response = await apiClient.get('/portfolio/projects');
-    const data = response.data.data || response.data;
-    return Array.isArray(data) ? data.map((item: Project) => processImageUrls(item, ['image', 'gallery'])) : data;
-  },
-
   getPublished: async (limit?: number, offset?: number, categoryId?: string): Promise<Project[]> => {
     let url = '/portfolio/projects?status=published';
     if (limit) {
@@ -35,18 +29,6 @@ export const projectsApi = {
     const projects = Array.isArray(data) ? data.map((item: Project) => processImageUrls(item, ['image', 'gallery'])) : [];
     const total = response.data.total || projects.length;
     return { projects, total };
-  },
-
-  getByCategory: async (categoryId: string): Promise<Project[]> => {
-    const response = await apiClient.get(`/portfolio/projects?categoryId=${categoryId}`);
-    const data = response.data.data || response.data;
-    return Array.isArray(data) ? data.map((item: Project) => processImageUrls(item, ['image', 'gallery'])) : data;
-  },
-
-  getFeatured: async (): Promise<Project[]> => {
-    const response = await apiClient.get('/portfolio/projects?featured=true');
-    const data = response.data.data || response.data;
-    return Array.isArray(data) ? data.map((item: Project) => processImageUrls(item, ['image', 'gallery'])) : data;
   },
 
   getById: async (id: string | number): Promise<Project> => {

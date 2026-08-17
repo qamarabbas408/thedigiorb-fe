@@ -44,13 +44,6 @@ export interface Testimonial {
   tags: string[];
 }
 
-export interface MetricStat {
-  label: string;
-  value: string;
-  subtext: string;
-  iconName: string;
-}
-
 export interface FaqItem {
   id: string;
   category: 'General' | 'Process' | 'Pricing & Delivery' | 'Tech & Security';
