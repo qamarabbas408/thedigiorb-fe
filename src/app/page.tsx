@@ -1,15 +1,8 @@
 import { Metadata } from 'next';
-import Hero from '@/components/sections/Hero';
-import About from '@/components/sections/About';
-import Services from '@/components/sections/Services';
-import Portfolio from '@/components/sections/Portfolio';
-import WhyUs from '@/components/sections/WhyUs';
-import Testimonials from '@/components/sections/Testimonials';
-import Team from '@/components/sections/Team';
-import Contact from '@/components/sections/Contact';
+import RevampLandingPage from '@/components/revamp/LandingPage';
 
 export const metadata: Metadata = {
-  title: 'TheDigiOrb - Crafting Exceptional Digital Experiences',
+  title: { absolute: 'TheDigiOrb - Crafting Exceptional Digital Experiences' },
   description: 'Building innovative web and mobile solutions for businesses worldwide. Expert web development, mobile apps, and digital transformation services.',
   openGraph: {
     title: 'TheDigiOrb - Crafting Exceptional Digital Experiences',
@@ -21,7 +14,7 @@ export const metadata: Metadata = {
         url: 'https://thedigiorb.com/assets/img/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'TheDiGiorb - Digital Solutions',
+        alt: 'TheDigiOrb - Digital Solutions',
       },
     ],
     locale: 'en_US',
@@ -29,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TheDiGiorb - Crafting Exceptional Digital Experiences',
+    title: 'TheDigiOrb - Crafting Exceptional Digital Experiences',
     description: 'Building innovative web and mobile solutions for businesses worldwide.',
     images: ['https://thedigiorb.com/assets/img/og-image.png'],
   },
@@ -39,16 +32,5 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return (
-    <>
-      <Hero />
-      <About />
-      <Services />
-      <Portfolio />
-      <WhyUs />
-      <Testimonials />
-      <Team />
-      <Contact />
-    </>
-  );
+  return <RevampLandingPage />;
 }

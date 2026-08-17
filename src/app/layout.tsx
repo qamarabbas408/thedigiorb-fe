@@ -10,9 +10,11 @@ import JsonLd from "@/components/JsonLd";
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": "https://thedigiorb.com/#organization",
   name: "TheDigiOrb",
   url: "https://thedigiorb.com",
   logo: "https://thedigiorb.com/assets/img/nav-logo.png",
+  image: "https://thedigiorb.com/assets/img/og-image.png",
   description:
     "Professional IT solutions including web development, mobile apps, AI/LLMs, blockchain, and custom software. 5+ years of experience serving national and international clients.",
   email: "support@thedigiorb.com",
@@ -27,17 +29,27 @@ const organizationSchema = {
   areaServed: "Worldwide",
 };
 
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://thedigiorb.com/#website",
+  name: "TheDigiOrb",
+  url: "https://thedigiorb.com",
+  publisher: { "@id": "https://thedigiorb.com/#organization" },
+  inLanguage: "en",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://thedigiorb.com'),
   title: {
-    default: "TheDiGiorb - Crafting Exceptional Digital Experiences",
-    template: "%s | TheDiGiorb",
+    default: "TheDigiOrb - Crafting Exceptional Digital Experiences",
+    template: "%s | TheDigiOrb",
   },
-  description: "TheDiGiorb - Professional IT solutions including web development, mobile apps, AI/LLMs, blockchain, and custom software. Serving national and international clients with 5+ years of experience.",
-  keywords: ["web development", "mobile app development", "custom software", "AI solutions", "LLMs", "blockchain", "IT support", "digital agency", "software development", "TheDiGiorb"],
-  authors: [{ name: "TheDiGiorb" }],
-  creator: "TheDiGiorb",
-  publisher: "TheDiGiorb",
+  description: "TheDigiOrb - Professional IT solutions including web development, mobile apps, AI/LLMs, blockchain, and custom software. Serving national and international clients with 5+ years of experience.",
+  keywords: ["web development", "mobile app development", "custom software", "AI solutions", "LLMs", "blockchain", "IT support", "digital agency", "software development", "TheDigiOrb"],
+  authors: [{ name: "TheDigiOrb" }],
+  creator: "TheDigiOrb",
+  publisher: "TheDigiOrb",
   formatDetection: {
     email: false,
     address: false,
@@ -47,24 +59,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://thedigiorb.com",
-    siteName: "TheDiGiorb",
-    title: "TheDiGiorb - Crafting Exceptional Digital Experiences",
+    siteName: "TheDigiOrb",
+    title: "TheDigiOrb - Crafting Exceptional Digital Experiences",
     description: "Professional IT solutions including web development, mobile apps, AI/LLMs, blockchain, and custom software. 5+ years of experience serving national and international clients.",
     images: [
       {
         url: "https://thedigiorb.com/assets/img/og-image.png",
         width: 1200,
         height: 630,
-        alt: "TheDiGiorb - Crafting Exceptional Digital Experiences",
+        alt: "TheDigiOrb - Crafting Exceptional Digital Experiences",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TheDiGiorb - Crafting Exceptional Digital Experiences",
+    title: "TheDigiOrb - Crafting Exceptional Digital Experiences",
     description: "Professional IT solutions including web development, mobile apps, AI/LLMs, blockchain, and custom software.",
     images: ["https://thedigiorb.com/assets/img/og-image.png"],
-    creator: "@TheDiGiorb",
+    creator: "@TheDigiOrb",
   },
   robots: {
     index: true,
@@ -117,28 +129,6 @@ export default function RootLayout({
           rel="stylesheet"
         />
 
-        {/* Vendor CSS Files */}
-        <link
-          href="/assets/vendor/bootstrap/css/bootstrap.min.css"
-          rel="stylesheet"
-        />
-        <link
-          href="/assets/vendor/bootstrap-icons/bootstrap-icons.css"
-          rel="stylesheet"
-        />
-        <link href="/assets/vendor/aos/aos.css" rel="stylesheet" />
-        <link
-          href="/assets/vendor/glightbox/css/glightbox.min.css"
-          rel="stylesheet"
-        />
-        <link
-          href="/assets/vendor/swiper/swiper-bundle.min.css"
-          rel="stylesheet"
-        />
-
-        {/* Main CSS File */}
-        <link href="/assets/css/main.css" rel="stylesheet" />
-
         {/* Google Analytics */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-HK10748610" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -156,55 +146,7 @@ export default function RootLayout({
         </SettingsProvider>
 
         <JsonLd data={organizationSchema} />
-
-        {/* Scroll Top */}
-        <a
-          href="#"
-          id="scroll-top"
-          className="scroll-top d-flex align-items-center justify-content-center"
-        >
-          <i className="bi bi-arrow-up-short"></i>
-        </a>
-
-        {/* Preloader */}
-        <div id="preloader"></div>
-
-        {/* Vendor JS Files */}
-        <Script
-          src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/vendor/php-email-form/validate.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/vendor/aos/aos.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/vendor/glightbox/js/glightbox.min.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/vendor/purecounter/purecounter_vanilla.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/vendor/swiper/swiper-bundle.min.js"
-          strategy="afterInteractive"
-        />
-
-        {/* Main JS File */}
-        <Script src="/assets/js/main.js" strategy="afterInteractive" />
+        <JsonLd data={websiteSchema} />
         </QueryProvider>
       </body>
     </html>

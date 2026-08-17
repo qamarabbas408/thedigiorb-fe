@@ -7,11 +7,3 @@ export const useCategories = () => {
     queryFn: () => categoriesApi.getAll(),
   });
 };
-
-export const useCategoryById = (id: string) => {
-  return useQuery({
-    queryKey: ['category', id],
-    queryFn: () => categoriesApi.getById(id),
-    enabled: !!id,
-  });
-};
