@@ -71,11 +71,14 @@ function PortfolioContent() {
           data={{
             "@context": "https://schema.org",
             "@type": "ItemList",
-            name: "TheDigiOrb Portfolio Projects",
-            numberOfItems: projects.length,
+            name:
+              activeFilter === '*'
+                ? "TheDigiOrb Portfolio Projects"
+                : `${getCategoryName(activeFilter)} Projects - TheDigiOrb`,
+            numberOfItems: totalProjects,
             itemListElement: projects.map((project, index) => ({
               "@type": "ListItem",
-              position: index + 1,
+              position: offset + index + 1,
               url: `https://thedigiorb.com/portfolio/${project.id}`,
               name: project.title,
               ...(project.description ? { description: project.description } : {}),
@@ -131,9 +134,17 @@ function PortfolioContent() {
         {/* Projects Grid */}
         {projects.length === 0 ? (
           <div className="text-center py-16 glass-card rounded-3xl border border-slate-800 p-12">
-            <Briefcase className="w-14 h-14 text-slate-600 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-white mb-2">No projects found</h3>
-            <p className="text-slate-400 text-sm">No projects in this category yet.</p>
+            <div className="w-16 h-16 rounded-2xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center mx-auto mb-5">
+              <Briefcase className="w-8 h-8 text-sky-400" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">
+              {activeFilter === '*' ? 'No projects yet' : `${getCategoryName(activeFilter)} projects are on the way`}
+            </h3>
+            <p className="text-slate-400 text-sm max-w-md mx-auto">
+              {activeFilter === '*'
+                ? 'We are currently preparing our project showcase. Please check back soon.'
+                : 'We are currently working on exciting projects in this category. Stay tuned — they will be showcased here soon.'}
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
