@@ -32,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
         setScrollProgress((window.scrollY / totalHeight) * 100);
       }
 
-      const sections = ['home', 'about', 'services', 'graph', 'portfolio', 'why-us', 'team', 'contact'];
+      const sections = ['home', 'about', 'services', 'graph', 'portfolio', 'faq', 'team', 'contact'];
       const scrollPos = window.scrollY + 100;
 
       for (const section of sections) {
@@ -65,10 +65,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
+    { name: 'About', href: `${base}#about`, id: 'about' },
     { name: 'Services', href: `${base}#services`, id: 'services' },
     { name: 'How It Works', href: `${base}#graph`, id: 'graph' },
     { name: 'Portfolio', href: `${base}#portfolio`, id: 'portfolio' },
-    { name: 'About', href: `${base}#about`, id: 'about' },
     { name: 'FAQ', href: `${base}#faq`, id: 'faq' },
     { name: 'Team', href: `${base}#team`, id: 'team' },
   ];

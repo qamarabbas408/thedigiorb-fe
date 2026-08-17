@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ArrowUpRight, Network } from 'lucide-react';
 import { PORTFOLIO_ITEMS, PortfolioItem } from '@/lib/revamp';
 import { usePublishedProjects, useCategories } from '@/hooks';
+import ProjectImage from './ProjectImage';
 
 interface PortfolioSectionProps {
   onSelectProject: (project: PortfolioItem) => void;
@@ -19,7 +20,7 @@ export const RevampPortfolio: React.FC<PortfolioSectionProps> = ({
   const [isCategoryLoading, setIsCategoryLoading] = useState<boolean>(false);
 
   const { data: categories } = useCategories();
-  const { data: dbProjects, isLoading: dbLoading } = usePublishedProjects(9);
+  const { data: dbProjects, isLoading: dbLoading } = usePublishedProjects();
 
   const mockCategories = ['All Projects', 'Desktop Application', 'Mobile Design', 'UI/UX', 'Web Design'];
 
@@ -165,8 +166,9 @@ export const RevampPortfolio: React.FC<PortfolioSectionProps> = ({
                 >
                   {/* Image Container */}
                   <div className="relative h-56 w-full overflow-hidden bg-slate-900">
-                    <img
+                    <ProjectImage
                       src={project.image}
+                      title={project.title}
                       alt={project.title}
                       className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
                     />

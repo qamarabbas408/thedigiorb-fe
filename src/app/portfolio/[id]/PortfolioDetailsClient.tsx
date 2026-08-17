@@ -157,6 +157,9 @@ export default function PortfolioDetailsClient({ params }: { params: Promise<{ i
                         src={img}
                         alt={`${project.title} - Image ${index + 1}`}
                         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${index === activeSlide ? 'opacity-100' : 'opacity-0'}`}
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
                       />
                     ))}
                   </div>

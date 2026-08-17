@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ExternalLink, Calendar, Layers, ShieldCheck, TrendingUp } from 'lucide-react';
 import { PortfolioItem } from '@/lib/revamp';
+import ProjectImage from './ProjectImage';
 
 interface ProjectModalProps {
   project: PortfolioItem | null;
@@ -54,8 +55,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
           {/* Project Image Banner */}
           <div className="relative h-64 sm:h-80 w-full overflow-hidden">
-            <img
+            <ProjectImage
               src={project.image}
+              title={project.title}
               alt={project.title}
               className="w-full h-full object-cover object-center"
             />

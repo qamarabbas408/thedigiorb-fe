@@ -7,6 +7,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, ChevronLeft, ChevronRight, Eye, Briefcase, Network, Star, Zap, PlayCircle } from 'lucide-react';
 import { usePublishedProjectsWithTotal, useCategories } from '@/hooks';
 import JsonLd from '@/components/JsonLd';
+import ProjectImage from '@/components/revamp/ProjectImage';
 
 const PROJECTS_PER_PAGE = 12;
 
@@ -161,15 +162,14 @@ function PortfolioContent() {
                 }`}
               >
                 <Link href={`/portfolio/${project.id}`} className="relative block overflow-hidden">
-                  <img
-                    src={project.image || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop'}
-                    alt={project.title}
-                    loading="lazy"
-                    className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop';
-                    }}
-                  />
+                  <div className="w-full h-52 overflow-hidden">
+                    <ProjectImage
+                      src={project.image}
+                      title={project.title}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <span className="w-10 h-10 rounded-xl bg-cyan-400 text-slate-950 flex items-center justify-center shadow-lg shadow-cyan-400/30">
