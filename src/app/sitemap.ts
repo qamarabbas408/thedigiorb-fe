@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import apiClient from '@/lib/api/client';
-import { teamMembers } from '@/data/teamMembers';
+import { teamApi } from '@/lib/api';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://thedigiorb.com';
 
@@ -35,12 +35,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'yearly' as const,
       priority: 0.5,
     },
-    ...teamMembers.map((member) => ({
+  ];
+
+  let teamPages: MetadataRoute.Sitemap = [];
+
+  try {
+    const teamMembers = await teamApi.getActive();
+    teamPages = teamMembers.map((member) => ({
       url: `${baseUrl}/team-member/${member.id}`,
       changeFrequency: 'monthly' as const,
       priority: 0.7,
-    })),
-  ];
+    }));
+  } catch (error) {
+    console.error('Failed to fetch team members for sitemap:', error);
+  }
 
   let dynamicPages: MetadataRoute.Sitemap = [];
 
@@ -60,5 +68,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Failed to fetch projects for sitemap:', error);
   }
 
-  return [...staticPages, ...dynamicPages];
+  return [...staticPages, ...teamPages, ...dynamicPages];
 }

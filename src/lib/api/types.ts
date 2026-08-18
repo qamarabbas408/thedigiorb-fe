@@ -70,6 +70,57 @@ export interface TeamMember {
   updated_at?: string;
 }
 
+export interface TeamSkill {
+  name: string;
+  level: number;
+}
+
+export interface TeamExperience {
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+}
+
+export interface TeamProject {
+  title: string;
+  category: string;
+  image?: string;
+  href?: string | null;
+}
+
+export interface TeamHobby {
+  label: string;
+  icon: string;
+}
+
+export interface TeamMemberProfile {
+  id: string | number;
+  slug?: string;
+  name: string;
+  role: string;
+  photo?: string;
+  years_experience?: number;
+  location?: string;
+  bio?: string;
+  stack?: string[];
+  skills?: TeamSkill[];
+  experience?: TeamExperience[];
+  projects?: TeamProject[];
+  hobbies?: TeamHobby[];
+  social?: {
+    facebook?: string | null;
+    twitter?: string | null;
+    linkedin?: string | null;
+    instagram?: string | null;
+    github?: string | null;
+  };
+  display_order?: number;
+  status?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
 export interface Testimonial {
   id: string | number;
   name: string;

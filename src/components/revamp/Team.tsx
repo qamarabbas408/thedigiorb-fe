@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
-import { Github, Linkedin, Twitter, Network } from 'lucide-react';
+import Link from 'next/link';
+import { Network, ArrowRight } from 'lucide-react';
 import { TEAM_MEMBERS, RevampTeamMember } from '@/lib/revamp';
 import { useActiveTeam } from '@/hooks';
 
@@ -112,35 +113,12 @@ export const RevampTeam: React.FC = () => {
                   </div>
                 )}
 
-                <div className="flex items-center justify-center gap-3 text-slate-400">
-                  <a
-                    href="https://thedigiorb.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="p-2 rounded-lg bg-slate-900 hover:text-white hover:bg-slate-800 transition-colors"
-                    aria-label="GitHub Profile"
-                  >
-                    <Github className="w-4 h-4" />
-                  </a>
-                  <a
-                    href="https://thedigiorb.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="p-2 rounded-lg bg-slate-900 hover:text-sky-400 hover:bg-slate-800 transition-colors"
-                    aria-label="LinkedIn Profile"
-                  >
-                    <Linkedin className="w-4 h-4" />
-                  </a>
-                  <a
-                    href="https://thedigiorb.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="p-2 rounded-lg bg-slate-900 hover:text-cyan-400 hover:bg-slate-800 transition-colors"
-                    aria-label="Twitter Profile"
-                  >
-                    <Twitter className="w-4 h-4" />
-                  </a>
-                </div>
+                <Link
+                  href={`/team-member/${member.id}`}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-sky-500/10 to-blue-600/10 border border-sky-500/30 text-cyan-300 text-xs font-mono font-bold hover:from-sky-500/20 hover:to-blue-600/20 hover:border-cyan-400/50 hover:scale-105 transition-all duration-300"
+                >
+                  View Profile <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
             </motion.div>
           ))}

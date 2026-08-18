@@ -1,18 +1,72 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, Award, Briefcase, Home, UserRound, Zap, Users, LayoutGrid } from 'lucide-react';
-import { teamMembers, TeamMember } from '@/data/teamMembers';
+import { teamApi } from '@/lib/api';
+import type { TeamMemberProfile } from '@/lib/api/types';
 import JsonLd from '@/components/JsonLd';
+import ProjectImage from '@/components/revamp/ProjectImage';
 
 interface TeamMemberPageProps {
   params: Promise<{ id: string }>;
 }
 
-export function generateStaticParams() {
-  return teamMembers.map((member) => ({ id: String(member.id) }));
+interface MemberDisplay {
+  id: string | number;
+  name: string;
+  role: string;
+  photo?: string;
+  yearsExperience: number;
+  bio: string;
+  stack: string[];
+  skills: { name: string; level: number }[];
+  experience: { role: string; company: string; period: string; description: string }[];
+  projectsCount: number;
+  hobbies: { label: string; icon: string }[];
+  social?: {
+    facebook?: string;
+    twitter?: string;
+    linkedin?: string;
+    instagram?: string;
+    github?: string;
+  };
 }
 
-function buildMemberSchemas(member: TeamMember) {
+function mapProfile(profile: TeamMemberProfile): MemberDisplay {
+  const social = profile.social
+    ? Object.fromEntries(
+        Object.entries(profile.social).filter(
+          (entry): entry is [string, string] => typeof entry[1] === 'string'
+        )
+      )
+    : undefined;
+
+  return {
+    id: profile.id,
+    name: profile.name,
+    role: profile.role,
+    photo: profile.photo,
+    yearsExperience: profile.years_experience || 0,
+    bio: profile.bio || '',
+    stack: profile.stack || [],
+    skills: profile.skills || [],
+    experience: profile.experience || [],
+    projectsCount: profile.projects?.length || 0,
+    hobbies: profile.hobbies || [],
+    social,
+  };
+}
+
+async function getMember(id: string): Promise<MemberDisplay | null> {
+  try {
+    const profile = await teamApi.getById(id);
+    if (!profile) return null;
+    return mapProfile(profile);
+  } catch {
+    return null;
+  }
+}
+
+function buildMemberSchemas(member: MemberDisplay) {
   const profileUrl = `https://thedigiorb.com/team-member/${member.id}`;
 
   const personSchema = {
@@ -68,10 +122,10 @@ function buildMemberSchemas(member: TeamMember) {
 
 export async function generateMetadata({ params }: TeamMemberPageProps): Promise<Metadata> {
   const { id } = await params;
-  const member = teamMembers.find((m) => String(m.id) === id);
+  const member = await getMember(id);
 
   const title = member ? `${member.name} - ${member.role}` : 'Team Member';
-  const description = member?.bio;
+  const description = member?.bio || 'Meet the team at TheDigiOrb.';
 
   return {
     title,
@@ -85,24 +139,25 @@ export async function generateMetadata({ params }: TeamMemberPageProps): Promise
       title,
       description,
       siteName: 'TheDigiOrb',
+      locale: 'en_US',
       images: [
         member?.photo
           ? { url: member.photo, width: 1200, height: 630, alt: member.name }
-          : { url: '/assets/img/og-image.png', width: 1200, height: 630, alt: 'TheDigiOrb - Digital Solutions' },
+          : { url: 'https://thedigiorb.com/assets/img/og-image.png', width: 1200, height: 630, alt: 'TheDigiOrb - Digital Solutions' },
       ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [member?.photo ?? '/assets/img/og-image.png'],
+      images: [member?.photo ?? 'https://thedigiorb.com/assets/img/og-image.png'],
     },
   };
 }
 
 export default async function TeamMemberPage({ params }: TeamMemberPageProps) {
   const { id } = await params;
-  const member = teamMembers.find((m) => String(m.id) === id);
+  const member = await getMember(id);
 
   if (!member) {
     return (
@@ -132,14 +187,7 @@ export default async function TeamMemberPage({ params }: TeamMemberPageProps) {
   );
 }
 
-function TeamMemberProfile({ member }: { member: TeamMember }) {
-  const initials = member.name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-
+function TeamMemberProfile({ member }: { member: MemberDisplay }) {
   const metaItems = [
     { label: 'Experience', value: member.yearsExperience > 0 ? `${member.yearsExperience}+ Years` : '' },
     { label: 'Specialties', value: member.stack.length > 0 ? `${member.stack.length} Technologies` : '' },
@@ -175,13 +223,13 @@ function TeamMemberProfile({ member }: { member: TeamMember }) {
           <div className="lg:col-span-4">
             <div className="glass-card p-6 rounded-3xl border border-slate-800 shadow-2xl relative">
               <div className="rounded-2xl overflow-hidden bg-slate-900 border-2 border-slate-700/80 relative h-72">
-                {member.photo ? (
-                  <img src={member.photo} alt={member.name} className="w-full h-full object-cover" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-cyan-500/10 to-blue-600/10">
-                    <span className="text-6xl font-black font-mono tracking-widest text-white">{initials}</span>
-                  </div>
-                )}
+                <ProjectImage
+                  src={member.photo}
+                  title={member.name}
+                  alt={member.name}
+                  containerClassName="w-full h-full rounded-2xl overflow-hidden"
+                  className="w-full h-full object-cover"
+                />
               </div>
               {member.yearsExperience > 0 && (
                 <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-mono font-bold shadow-lg shadow-amber-500/30 whitespace-nowrap">
