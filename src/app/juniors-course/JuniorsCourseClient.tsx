@@ -5,7 +5,7 @@ import { motion } from 'motion/react';
 import {
   Rocket, Code2, Brain, Wrench, Puzzle,
   Sparkles, Send, CheckCircle2, Loader2, GraduationCap,
-  Users, CalendarDays, MonitorPlay, Bot, Terminal, Target,
+  Users, CalendarDays, MonitorPlay, Bot, Terminal, Target, ArrowDown,
 } from 'lucide-react';
 import { postToSheet } from '@/lib/api/services/sheetsWebhook';
 
@@ -167,6 +167,22 @@ export const JuniorsCourseClient: React.FC = () => {
               </span>
             ))}
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="flex justify-center pt-4"
+          >
+            <a
+              href="#register"
+              className="relative inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-bold text-white bg-gradient-to-r from-sky-500 via-blue-600 to-cyan-500 rounded-xl shadow-lg shadow-sky-500/20 hover:shadow-sky-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 group overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              <span className="relative z-10">Register Now</span>
+              <ArrowDown className="w-4 h-4 relative z-10 group-hover:translate-y-1 transition-transform" />
+            </a>
+          </motion.div>
         </div>
       </section>
 
@@ -230,7 +246,7 @@ export const JuniorsCourseClient: React.FC = () => {
       </section>
 
       {/* Registration Form */}
-      <section id="join" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+      <section id="register" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 scroll-mt-24">
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           {/* Left info */}
           <div className="lg:col-span-5 glass-card p-8 rounded-3xl border border-slate-800 space-y-6 shadow-2xl relative overflow-hidden">

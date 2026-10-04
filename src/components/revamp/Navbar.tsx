@@ -71,7 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
     { name: 'Portfolio', href: `${base}#portfolio`, id: 'portfolio' },
     { name: 'FAQ', href: `${base}#faq`, id: 'faq' },
     { name: 'Team', href: `${base}#team`, id: 'team' },
-    { name: 'Juniors', href: '/juniors-course', id: 'juniors-course' },
+    { name: 'Juniors', href: '/juniors-course#register', id: 'juniors-course' },
   ];
 
   const phone = settings?.company_phone || '+92 311 588908';
