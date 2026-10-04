@@ -35,7 +35,7 @@ const courseJsonLd = {
 };
 
 export const metadata: Metadata = {
-  title: "Juniors – Young Developer Course | TheDigiOrb",
+  title: "Juniors – Young Developer Course",
   description:
     "Building Young Developers, One Idea at a Time! Learn web & programming fundamentals, build projects, and explore AI-assisted development with TheDigiOrb.",
   keywords: [
@@ -74,6 +74,26 @@ export const metadata: Metadata = {
     description:
       "Building Young Developers, One Idea at a Time! Join our hands-on course to learn coding, build projects, and become future developers.",
     images: [OG_IMAGE],
+    creator: "@TheDigiOrb",
+  },
+  authors: [{ name: "TheDigiOrb" }],
+  creator: "TheDigiOrb",
+  publisher: "TheDigiOrb",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   alternates: {
     canonical: PAGE_URL,
