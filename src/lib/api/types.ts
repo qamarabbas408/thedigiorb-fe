@@ -146,6 +146,24 @@ export interface Contact {
   created_at?: string;
 }
 
+export interface CourseRegistration {
+  id?: string | number;
+  name: string;
+  email: string;
+  phone?: string;
+  age?: string | number;
+  school?: string;
+  grade?: string;
+  parent_name?: string;
+  parent_email?: string;
+  parent_phone?: string;
+  course?: string;
+  message?: string;
+  status?: string;
+  read?: boolean;
+  created_at?: string;
+}
+
 export interface Settings {
   company_name: string;
   company_email: string;

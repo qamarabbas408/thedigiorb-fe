@@ -71,6 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
     { name: 'Portfolio', href: `${base}#portfolio`, id: 'portfolio' },
     { name: 'FAQ', href: `${base}#faq`, id: 'faq' },
     { name: 'Team', href: `${base}#team`, id: 'team' },
+    { name: 'Juniors', href: '/juniors-course', id: 'juniors-course' },
   ];
 
   const phone = settings?.company_phone || '+92 311 588908';
@@ -117,7 +118,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
           {/* Desktop Nav links */}
           <nav className="hidden md:flex items-center gap-1 bg-slate-900/60 backdrop-blur-xl px-3 py-1.5 rounded-full border border-slate-800/80 shadow-inner">
             {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
+              const isCourseLink = link.id === 'juniors-course';
+              const isActive = isCourseLink ? pathname === '/juniors-course' : activeSection === link.id;
+              if (isCourseLink) {
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="relative px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-full transition-all duration-300 group/course"
+                  >
+                    <span className="absolute inset-0 rounded-full bg-gradient-to-r from-sky-500/20 via-cyan-500/10 to-emerald-500/20 border border-cyan-400/40 shadow-[0_0_12px_rgba(34,211,238,0.25)] group-hover/course:shadow-cyan-400/50 group-hover/course:border-cyan-300/70 transition-all duration-300" />
+                    <span className="relative z-10 flex items-center gap-1.5 bg-gradient-to-r from-cyan-300 via-sky-400 to-emerald-400 bg-clip-text text-transparent">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse shrink-0" />
+                      {link.name}
+                    </span>
+                  </a>
+                );
+              }
               return (
                 <a
                   key={link.name}
@@ -238,25 +255,30 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
                     Navigation
                   </span>
                   {navLinks.map((link) => {
-                    const isActive = activeSection === link.id;
+                    const isCourseLink = link.id === 'juniors-course';
+                    const isActive = isCourseLink ? pathname === '/juniors-course' : activeSection === link.id;
                     return (
                       <a
                         key={link.name}
                         href={link.href}
                         onClick={() => setMobileMenuOpen(false)}
                         className={`flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-200 ${
-                          isActive
-                            ? 'bg-gradient-to-r from-sky-500/20 to-blue-600/10 border border-sky-500/30 text-sky-300 shadow-sm'
-                            : 'text-slate-300 hover:text-white hover:bg-slate-900/60 border border-transparent'
+                          isCourseLink
+                            ? 'bg-gradient-to-r from-sky-500/10 to-emerald-500/10 border border-cyan-400/40 text-transparent shadow-[0_0_12px_rgba(34,211,238,0.15)]'
+                            : isActive
+                              ? 'bg-gradient-to-r from-sky-500/20 to-blue-600/10 border border-sky-500/30 text-sky-300 shadow-sm'
+                              : 'text-slate-300 hover:text-white hover:bg-slate-900/60 border border-transparent'
                         }`}
                       >
-                        <div className="flex items-center gap-3">
-                          {isActive && (
+                        <div className={`flex items-center gap-3 ${isCourseLink ? 'bg-gradient-to-r from-cyan-300 via-sky-400 to-emerald-400 bg-clip-text' : ''}`}>
+                          {isCourseLink ? (
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] shrink-0" />
+                          ) : isActive ? (
                             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
-                          )}
+                          ) : null}
                           <span>{link.name}</span>
                         </div>
-                        <ChevronRight className={`w-4 h-4 ${isActive ? 'text-sky-400' : 'text-slate-600'}`} />
+                        <ChevronRight className={`w-4 h-4 ${isCourseLink ? 'text-cyan-400' : isActive ? 'text-sky-400' : 'text-slate-600'}`} />
                       </a>
                     );
                   })}
